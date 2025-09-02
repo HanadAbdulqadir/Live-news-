@@ -4,7 +4,7 @@ A modern React-based news streaming application that aggregates live streams and
 
 ## Features
 
-- **Live Streaming**: Watch live news streams from 20+ international news sources across 5 categories
+- **Live Streaming**: Watch live news streams from 24+ international news sources across 6 categories
 - **Article Scraping**: Automatic fetching and display of latest articles from RSS feeds
 - **Modern UI**: Glassmorphism design with smooth animations and responsive layout
 - **Search Functionality**: Filter news sources by name
@@ -25,16 +25,22 @@ A modern React-based news streaming application that aggregates live streams and
 - **SABC News** (South Africa)
 
 ### African Countries
-- **Al Jazeera** (Qatar)
-- **TRT World** (Turkey)
+- **SABC News** (South Africa)
 - **NBC Africa** (Nigeria)
 - **KBC Kenya** (Kenya)
+- **Egypt Today** (Egypt)
 
 ### Latin America
 - **Telesur** (Venezuela)
 - **CubaDebate** (Cuba)
 - **TeleSUR English** (Pan-Regional)
 - **Press TV** (Iran)
+
+### Arab Countries
+- **Al Jazeera** (Qatar)
+- **Al Arabiya** (Saudi Arabia)
+- **Sky News Arabia** (UAE)
+- **France 24 Arabic** (France)
 
 ### Asian Countries
 - **WION** (India)

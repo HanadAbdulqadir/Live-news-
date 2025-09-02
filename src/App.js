@@ -76,18 +76,11 @@ const NEWS_CATEGORIES = [
     title: 'African Countries',
     sources: [
       {
-        id: 'aljazeera',
-        name: 'Al Jazeera',
-        streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UCw2n4e6hLypqQoGxKWsY_1A',
-        color: '#ace600',
-        country: 'Qatar'
-      },
-      {
-        id: 'trtworld',
-        name: 'TRT World',
-        streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UC7fWeaHhqgM4Ry-RMpM2YYw',
-        color: '#c60000',
-        country: 'Turkey'
+        id: 'sabc',
+        name: 'SABC News',
+        streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UCPgS1SYc0e_-MfBkq6oQJAg',
+        color: '#007749',
+        country: 'South Africa'
       },
       {
         id: 'nbc',
@@ -102,6 +95,13 @@ const NEWS_CATEGORIES = [
         streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UC0n4YfjYT5Lq8N9QdXkL-2A',
         color: '#009639',
         country: 'Kenya'
+      },
+      {
+        id: 'egypt',
+        name: 'Egypt Today',
+        streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UC2--Rc5nnGs5v7CIcGDgXAQ',
+        color: '#ce1126',
+        country: 'Egypt'
       }
     ]
   },
@@ -136,6 +136,40 @@ const NEWS_CATEGORIES = [
         streamUrl: 'https://rumble.com/embed/v6vut38/?pub=4',
         color: '#0072bc',
         country: 'Iran'
+      }
+    ]
+  },
+  {
+    id: 'arab',
+    title: 'Arab Countries',
+    sources: [
+      {
+        id: 'aljazeera',
+        name: 'Al Jazeera',
+        streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UCw2n4e6hLypqQoGxKWsY_1A',
+        color: '#ace600',
+        country: 'Qatar'
+      },
+      {
+        id: 'alarabiya',
+        name: 'Al Arabiya',
+        streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UC_tv3h1WV1L0eTQpSRC6f0Q',
+        color: '#0072bc',
+        country: 'Saudi Arabia'
+      },
+      {
+        id: 'skynewsarabia',
+        name: 'Sky News Arabia',
+        streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UCkCbV5_6dK3TDUYLQ3QnV0w',
+        color: '#0072c6',
+        country: 'UAE'
+      },
+      {
+        id: 'france24arabic',
+        name: 'France 24 Arabic',
+        streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UCpXcQj5k7Lr3Qx1QwqJ5Z5A',
+        color: '#0055a4',
+        country: 'France'
       }
     ]
   },
