@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './App.css';
+import CountriesList from './CountriesList';
 
 // News sources organized by continents
 const NEWS_CATEGORIES = [
@@ -249,6 +250,7 @@ const ALL_SOURCES = NEWS_CATEGORIES.flatMap(category => category.sources);
 function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedSource, setSelectedSource] = useState(null);
+  const [activeTab, setActiveTab] = useState('home');
 
   // Filter sources based on search query
   const filteredCategories = NEWS_CATEGORIES.map(category => ({
@@ -266,10 +268,26 @@ function App() {
         <a href="#" className="logo">NEWSFLIX</a>
         <nav className="navigation">
           <ul>
-            <li><a href="#" className="active">Home</a></li>
+            <li>
+              <a 
+                href="#" 
+                className={activeTab === 'home' ? 'active' : ''}
+                onClick={(e) => { e.preventDefault(); setActiveTab('home'); }}
+              >
+                Home
+              </a>
+            </li>
+            <li>
+              <a 
+                href="#" 
+                className={activeTab === 'countries' ? 'active' : ''}
+                onClick={(e) => { e.preventDefault(); setActiveTab('countries'); }}
+              >
+                Countries
+              </a>
+            </li>
             <li><a href="#">Live</a></li>
             <li><a href="#">News</a></li>
-            <li><a href="#">International</a></li>
           </ul>
         </nav>
         <div className="search-container">
@@ -377,6 +395,12 @@ function App() {
             </div>
           </div>
         </section>
+
+        {/* Countries List Section */}
+        <CountriesList onCountrySelect={(country) => {
+          setSearchQuery(country);
+          setActiveTab('home');
+        }} />
       </main>
 
       {/* Footer */}
