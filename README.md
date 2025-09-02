@@ -4,22 +4,43 @@ A modern React-based news streaming application that aggregates live streams and
 
 ## Features
 
-- **Live Streaming**: Watch live news streams from 8 different non-Western news sources
+- **Live Streaming**: Watch live news streams from 20+ international news sources across 5 categories
 - **Article Scraping**: Automatic fetching and display of latest articles from RSS feeds
 - **Modern UI**: Glassmorphism design with smooth animations and responsive layout
 - **Search Functionality**: Filter news sources by name
 - **Auto-Refresh**: Manual refresh button for latest articles
 
-## News Sources
+## News Sources by Category
 
-1. **RT News** (Russia)
-2. **Press TV News** (Iran)
-3. **CGTN News** (China)
-4. **Telesur English** (Latin America)
-5. **Al Jazeera English** (Qatar)
-6. **TRT World** (Turkey)
-7. **WION News** (India)
-8. **CubaDebate** (Cuba)
+### G7 Countries
+- **CNN** (USA)
+- **BBC News** (UK)
+- **France 24** (France)
+- **DW News** (Germany)
+
+### BRICS Countries
+- **RT News** (Russia)
+- **CGTN** (China)
+- **NDTV India** (India)
+- **SABC News** (South Africa)
+
+### African Countries
+- **Al Jazeera** (Qatar)
+- **TRT World** (Turkey)
+- **NBC Africa** (Nigeria)
+- **KBC Kenya** (Kenya)
+
+### Latin America
+- **Telesur** (Venezuela)
+- **CubaDebate** (Cuba)
+- **TeleSUR English** (Pan-Regional)
+- **Press TV** (Iran)
+
+### Asian Countries
+- **WION** (India)
+- **NHK World** (Japan)
+- **KBS World** (South Korea)
+- **CNA** (Singapore)
 
 ## Technologies Used
 

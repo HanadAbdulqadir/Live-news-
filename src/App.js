@@ -1,66 +1,195 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 
-// News sources with streaming URLs
-const NEWS_SOURCES = [
+// News sources organized by categories
+const NEWS_CATEGORIES = [
   {
-    id: 'rt',
-    name: 'RT News',
-    streamUrl: 'https://rumble.com/embed/v33aw1a/?pub=4',
-    color: '#e50914'
+    id: 'g7',
+    title: 'G7 Countries',
+    sources: [
+      {
+        id: 'cnn',
+        name: 'CNN',
+        streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UCupvZG-5ko_eiXAupbDfxWw',
+        color: '#cc0000',
+        country: 'USA'
+      },
+      {
+        id: 'bbc',
+        name: 'BBC News',
+        streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UC16niRr50-MSBwiO3YDb3RA',
+        color: '#bb1919',
+        country: 'UK'
+      },
+      {
+        id: 'france24',
+        name: 'France 24',
+        streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UCQfwfsi5VrQ8yKZ-UWmAEFg',
+        color: '#0055a4',
+        country: 'France'
+      },
+      {
+        id: 'dw',
+        name: 'DW News',
+        streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UCknLrEdhRCp1aegoMqRaCZg',
+        color: '#00205b',
+        country: 'Germany'
+      }
+    ]
   },
   {
-    id: 'presstv',
-    name: 'Press TV',
-    streamUrl: 'https://rumble.com/embed/v6vut38/?pub=4',
-    color: '#0072bc'
+    id: 'brics',
+    title: 'BRICS Countries',
+    sources: [
+      {
+        id: 'rt',
+        name: 'RT News',
+        streamUrl: 'https://rumble.com/embed/v33aw1a/?pub=4',
+        color: '#e50914',
+        country: 'Russia'
+      },
+      {
+        id: 'cgtn',
+        name: 'CGTN',
+        streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UC-l-GT_h_12Z2b0-Qc_wAwA',
+        color: '#ff0000',
+        country: 'China'
+      },
+      {
+        id: 'ndtv',
+        name: 'NDTV India',
+        streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UCZFMm1mMw0F81Z37aaEzTUA',
+        color: '#ff6b00',
+        country: 'India'
+      },
+      {
+        id: 'sabc',
+        name: 'SABC News',
+        streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UCPgS1SYc0e_-MfBkq6oQJAg',
+        color: '#007749',
+        country: 'South Africa'
+      }
+    ]
   },
   {
-    id: 'cgtn',
-    name: 'CGTN',
-    streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UC-l-GT_h_12Z2b0-Qc_wAwA',
-    color: '#ff0000'
+    id: 'africa',
+    title: 'African Countries',
+    sources: [
+      {
+        id: 'aljazeera',
+        name: 'Al Jazeera',
+        streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UCw2n4e6hLypqQoGxKWsY_1A',
+        color: '#ace600',
+        country: 'Qatar'
+      },
+      {
+        id: 'trtworld',
+        name: 'TRT World',
+        streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UC7fWeaHhqgM4Ry-RMpM2YYw',
+        color: '#c60000',
+        country: 'Turkey'
+      },
+      {
+        id: 'nbc',
+        name: 'NBC Africa',
+        streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UCbLyeC6Q7y3OoJdX0jM6w1g',
+        color: '#ff6b00',
+        country: 'Nigeria'
+      },
+      {
+        id: 'kenya',
+        name: 'KBC Kenya',
+        streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UC0n4YfjYT5Lq8N9QdXkL-2A',
+        color: '#009639',
+        country: 'Kenya'
+      }
+    ]
   },
   {
-    id: 'telesur',
-    name: 'Telesur',
-    streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UCPRf2gP7wqI8a_3oI0Gfziw',
-    color: '#f9a01b'
+    id: 'latinamerica',
+    title: 'Latin America',
+    sources: [
+      {
+        id: 'telesur',
+        name: 'Telesur',
+        streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UCPRf2gP7wqI8a_3oI0Gfziw',
+        color: '#f9a01b',
+        country: 'Venezuela'
+      },
+      {
+        id: 'cubadebate',
+        name: 'CubaDebate',
+        streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UCQvX2MSjVXqQp6_8Q6p5Z5A',
+        color: '#002395',
+        country: 'Cuba'
+      },
+      {
+        id: 'teleSUR',
+        name: 'TeleSUR English',
+        streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UC6vc4aQ3T3Xa7Xr9E3GQZ1Q',
+        color: '#ff6b00',
+        country: 'Pan-Regional'
+      },
+      {
+        id: 'presstv',
+        name: 'Press TV',
+        streamUrl: 'https://rumble.com/embed/v6vut38/?pub=4',
+        color: '#0072bc',
+        country: 'Iran'
+      }
+    ]
   },
   {
-    id: 'aljazeera',
-    name: 'Al Jazeera',
-    streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UCw2n4e6hLypqQoGxKWsY_1A',
-    color: '#ace600'
-  },
-  {
-    id: 'trtworld',
-    name: 'TRT World',
-    streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UC7fWeaHhqgM4Ry-RMpM2YYw',
-    color: '#c60000'
-  },
-  {
-    id: 'wion',
-    name: 'WION',
-    streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UC_gUM8rL-Lrg6O3adPW9K1g',
-    color: '#ff6b00'
-  },
-  {
-    id: 'cubadebate',
-    name: 'CubaDebate',
-    streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UCQvX2MSjVXqQp6_8Q6p5Z5A',
-    color: '#002395'
+    id: 'asia',
+    title: 'Asian Countries',
+    sources: [
+      {
+        id: 'wion',
+        name: 'WION',
+        streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UC_gUM8rL-Lrg6O3adPW9K1g',
+        color: '#ff6b00',
+        country: 'India'
+      },
+      {
+        id: 'nhk',
+        name: 'NHK World',
+        streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UCGJ5L6jLkYF6p8LkDz0Yf0A',
+        color: '#bc002d',
+        country: 'Japan'
+      },
+      {
+        id: 'kbs',
+        name: 'KBS World',
+        streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UC5BMQOsAB8hKUyHu9KI6yig',
+        color: '#003478',
+        country: 'South Korea'
+      },
+      {
+        id: 'cna',
+        name: 'CNA',
+        streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UC2C_jShtL725hvbm1arSV9w',
+        color: '#ff6b00',
+        country: 'Singapore'
+      }
+    ]
   }
 ];
+
+// Flatten all sources for search functionality
+const ALL_SOURCES = NEWS_CATEGORIES.flatMap(category => category.sources);
 
 function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedSource, setSelectedSource] = useState(null);
 
   // Filter sources based on search query
-  const filteredSources = NEWS_SOURCES.filter(source =>
-    source.name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const filteredCategories = NEWS_CATEGORIES.map(category => ({
+    ...category,
+    sources: category.sources.filter(source =>
+      source.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      source.country.toLowerCase().includes(searchQuery.toLowerCase())
+    )
+  })).filter(category => category.sources.length > 0);
 
   return (
     <div className="App">
@@ -100,33 +229,35 @@ function App() {
           </div>
         </section>
 
-        {/* News Channels Row */}
-        <section className="content-row">
-          <h2 className="row-title">Live News Channels</h2>
-          <div className="streams-grid">
-            {filteredSources.map(source => (
-              <div
-                key={source.id}
-                className="stream"
-                onClick={() => setSelectedSource(source)}
-              >
-                <div className="stream-thumbnail">
-                  <iframe
-                    src={source.streamUrl}
-                    title={source.name}
-                    allowFullScreen
-                    className="stream-iframe"
-                  />
-                  <div className="stream-overlay"></div>
+        {/* News Channels by Category */}
+        {filteredCategories.map(category => (
+          <section key={category.id} className="content-row">
+            <h2 className="row-title">{category.title}</h2>
+            <div className="streams-grid">
+              {category.sources.map(source => (
+                <div
+                  key={source.id}
+                  className="stream"
+                  onClick={() => setSelectedSource(source)}
+                >
+                  <div className="stream-thumbnail">
+                    <iframe
+                      src={source.streamUrl}
+                      title={source.name}
+                      allowFullScreen
+                      className="stream-iframe"
+                    />
+                    <div className="stream-overlay"></div>
+                  </div>
+                  <div className="stream-info">
+                    <h3 className="stream-title">{source.name}</h3>
+                    <p className="stream-description">{source.country} • Live streaming</p>
+                  </div>
                 </div>
-                <div className="stream-info">
-                  <h3 className="stream-title">{source.name}</h3>
-                  <p className="stream-description">Live streaming • 24/7 coverage</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
+              ))}
+            </div>
+          </section>
+        ))}
 
         {/* Featured Articles Section */}
         <section className="articles-section">
