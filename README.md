@@ -4,27 +4,39 @@ A modern React-based news streaming application that aggregates live streams and
 
 ## Features
 
-- **Live Streaming**: Watch live news streams from 24+ international news sources across 6 categories
+- **Live Streaming**: Watch live news streams from 28+ international news sources across 7 continents
 - **Article Scraping**: Automatic fetching and display of latest articles from RSS feeds
 - **Modern UI**: Glassmorphism design with smooth animations and responsive layout
 - **Search Functionality**: Filter news sources by name
 - **Auto-Refresh**: Manual refresh button for latest articles
 
-## News Sources by Category
+## News Sources by Continent
 
-### G7 Countries
+### North America
 - **CNN** (USA)
+- **Fox News** (USA)
+- **MSNBC** (USA)
+- **CBC News** (Canada)
+
+### Europe
 - **BBC News** (UK)
 - **France 24** (France)
 - **DW News** (Germany)
+- **Euronews** (Pan-European)
 
-### BRICS Countries
-- **RT News** (Russia)
+### Asia
 - **CGTN** (China)
 - **NDTV India** (India)
-- **SABC News** (South Africa)
+- **NHK World** (Japan)
+- **KBS World** (South Korea)
 
-### African Countries
+### Middle East
+- **Al Jazeera** (Qatar)
+- **Al Arabiya** (Saudi Arabia)
+- **Sky News Arabia** (UAE)
+- **TRT World** (Turkey)
+
+### Africa
 - **SABC News** (South Africa)
 - **NBC Africa** (Nigeria)
 - **KBC Kenya** (Kenya)
@@ -34,19 +46,13 @@ A modern React-based news streaming application that aggregates live streams and
 - **Telesur** (Venezuela)
 - **CubaDebate** (Cuba)
 - **TeleSUR English** (Pan-Regional)
-- **Press TV** (Iran)
+- **Globo News** (Brazil)
 
-### Arab Countries
-- **Al Jazeera** (Qatar)
-- **Al Arabiya** (Saudi Arabia)
-- **Sky News Arabia** (UAE)
-- **France 24 Arabic** (France)
-
-### Asian Countries
-- **WION** (India)
-- **NHK World** (Japan)
-- **KBS World** (South Korea)
-- **CNA** (Singapore)
+### Oceania
+- **ABC News Australia** (Australia)
+- **Sky News Australia** (Australia)
+- **TVNZ** (New Zealand)
+- **RNZ Pacific** (New Zealand)
 
 ## Technologies Used
 

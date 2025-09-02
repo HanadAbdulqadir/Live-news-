@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 
-// News sources organized by categories
+// News sources organized by continents
 const NEWS_CATEGORIES = [
   {
-    id: 'g7',
-    title: 'G7 Countries',
+    id: 'north-america',
+    title: 'North America',
     sources: [
       {
         id: 'cnn',
@@ -14,6 +14,33 @@ const NEWS_CATEGORIES = [
         color: '#cc0000',
         country: 'USA'
       },
+      {
+        id: 'foxnews',
+        name: 'Fox News',
+        streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UCXIJgqnII2ZOINSWNOGFThA',
+        color: '#003366',
+        country: 'USA'
+      },
+      {
+        id: 'msnbc',
+        name: 'MSNBC',
+        streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UCaXkIU1QidjPwiAYu6GcHjg',
+        color: '#279ece',
+        country: 'USA'
+      },
+      {
+        id: 'cbc',
+        name: 'CBC News',
+        streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UCeJqT4W4VX7uzQ2V0iW6pJg',
+        color: '#cc0000',
+        country: 'Canada'
+      }
+    ]
+  },
+  {
+    id: 'europe',
+    title: 'Europe',
+    sources: [
       {
         id: 'bbc',
         name: 'BBC News',
@@ -34,20 +61,20 @@ const NEWS_CATEGORIES = [
         streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UCknLrEdhRCp1aegoMqRaCZg',
         color: '#00205b',
         country: 'Germany'
+      },
+      {
+        id: 'euronews',
+        name: 'Euronews',
+        streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UCW2QcKZiU8aOGgCIQjDHKTA',
+        color: '#0a4a7a',
+        country: 'Pan-European'
       }
     ]
   },
   {
-    id: 'brics',
-    title: 'BRICS Countries',
+    id: 'asia',
+    title: 'Asia',
     sources: [
-      {
-        id: 'rt',
-        name: 'RT News',
-        streamUrl: 'https://rumble.com/embed/v33aw1a/?pub=4',
-        color: '#e50914',
-        country: 'Russia'
-      },
       {
         id: 'cgtn',
         name: 'CGTN',
@@ -63,17 +90,58 @@ const NEWS_CATEGORIES = [
         country: 'India'
       },
       {
-        id: 'sabc',
-        name: 'SABC News',
-        streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UCPgS1SYc0e_-MfBkq6oQJAg',
-        color: '#007749',
-        country: 'South Africa'
+        id: 'nhk',
+        name: 'NHK World',
+        streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UCGJ5L6jLkYF6p8LkDz0Yf0A',
+        color: '#bc002d',
+        country: 'Japan'
+      },
+      {
+        id: 'kbs',
+        name: 'KBS World',
+        streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UC5BMQOsAB8hKUyHu9KI6yig',
+        color: '#003478',
+        country: 'South Korea'
+      }
+    ]
+  },
+  {
+    id: 'middle-east',
+    title: 'Middle East',
+    sources: [
+      {
+        id: 'aljazeera',
+        name: 'Al Jazeera',
+        streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UCw2n4e6hLypqQoGxKWsY_1A',
+        color: '#ace600',
+        country: 'Qatar'
+      },
+      {
+        id: 'alarabiya',
+        name: 'Al Arabiya',
+        streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UC_tv3h1WV1L0eTQpSRC6f0Q',
+        color: '#0072bc',
+        country: 'Saudi Arabia'
+      },
+      {
+        id: 'skynewsarabia',
+        name: 'Sky News Arabia',
+        streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UCkCbV5_6dK3TDUYLQ3QnV0w',
+        color: '#0072c6',
+        country: 'UAE'
+      },
+      {
+        id: 'trtworld',
+        name: 'TRT World',
+        streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UC7fWeaHhqgM4Ry-RMpM2YYw',
+        color: '#c60000',
+        country: 'Turkey'
       }
     ]
   },
   {
     id: 'africa',
-    title: 'African Countries',
+    title: 'Africa',
     sources: [
       {
         id: 'sabc',
@@ -106,7 +174,7 @@ const NEWS_CATEGORIES = [
     ]
   },
   {
-    id: 'latinamerica',
+    id: 'latin-america',
     title: 'Latin America',
     sources: [
       {
@@ -131,79 +199,45 @@ const NEWS_CATEGORIES = [
         country: 'Pan-Regional'
       },
       {
-        id: 'presstv',
-        name: 'Press TV',
-        streamUrl: 'https://rumble.com/embed/v6vut38/?pub=4',
-        color: '#0072bc',
-        country: 'Iran'
+        id: 'globo',
+        name: 'Globo News',
+        streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UCjJ7btqBlQ9L2D8QnHk7OsQ',
+        color: '#00a859',
+        country: 'Brazil'
       }
     ]
   },
   {
-    id: 'arab',
-    title: 'Arab Countries',
+    id: 'oceania',
+    title: 'Oceania',
     sources: [
       {
-        id: 'aljazeera',
-        name: 'Al Jazeera',
-        streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UCw2n4e6hLypqQoGxKWsY_1A',
-        color: '#ace600',
-        country: 'Qatar'
+        id: 'abc',
+        name: 'ABC News Australia',
+        streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UCVrL6s5Z2YY2hTFH2wTfS2Q',
+        color: '#ff0000',
+        country: 'Australia'
       },
       {
-        id: 'alarabiya',
-        name: 'Al Arabiya',
-        streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UC_tv3h1WV1L0eTQpSRC6f0Q',
-        color: '#0072bc',
-        country: 'Saudi Arabia'
-      },
-      {
-        id: 'skynewsarabia',
-        name: 'Sky News Arabia',
-        streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UCkCbV5_6dK3TDUYLQ3QnV0w',
+        id: 'skynewsau',
+        name: 'Sky News Australia',
+        streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UCVrL6s5Z2YY2hTFH2wTfS2Q',
         color: '#0072c6',
-        country: 'UAE'
+        country: 'Australia'
       },
       {
-        id: 'france24arabic',
-        name: 'France 24 Arabic',
-        streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UCpXcQj5k7Lr3Qx1QwqJ5Z5A',
+        id: 'tvnz',
+        name: 'TVNZ',
+        streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UCVrL6s5Z2YY2hTFH2wTfS2Q',
+        color: '#cc0000',
+        country: 'New Zealand'
+      },
+      {
+        id: 'rnz',
+        name: 'RNZ Pacific',
+        streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UCVrL6s5Z2YY2hTFH2wTfS2Q',
         color: '#0055a4',
-        country: 'France'
-      }
-    ]
-  },
-  {
-    id: 'asia',
-    title: 'Asian Countries',
-    sources: [
-      {
-        id: 'wion',
-        name: 'WION',
-        streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UC_gUM8rL-Lrg6O3adPW9K1g',
-        color: '#ff6b00',
-        country: 'India'
-      },
-      {
-        id: 'nhk',
-        name: 'NHK World',
-        streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UCGJ5L6jLkYF6p8LkDz0Yf0A',
-        color: '#bc002d',
-        country: 'Japan'
-      },
-      {
-        id: 'kbs',
-        name: 'KBS World',
-        streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UC5BMQOsAB8hKUyHu9KI6yig',
-        color: '#003478',
-        country: 'South Korea'
-      },
-      {
-        id: 'cna',
-        name: 'CNA',
-        streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UC2C_jShtL725hvbm1arSV9w',
-        color: '#ff6b00',
-        country: 'Singapore'
+        country: 'New Zealand'
       }
     ]
   }
