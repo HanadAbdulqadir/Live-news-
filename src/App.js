@@ -4,52 +4,52 @@ import './App.css';
 // News sources with streaming URLs
 const NEWS_SOURCES = [
   {
-    id: 'rt',
-    name: 'RT News',
-    streamUrl: 'https://rumble.com/embed/v33aw1a/?pub=4',
-    color: '#e50914'
+    id: 'cnn',
+    name: 'CNN',
+    streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UCupvZG-5ko_eiXAupbDfxWw',
+    color: '#cc0000'
   },
   {
-    id: 'presstv',
-    name: 'Press TV',
-    streamUrl: 'https://rumble.com/embed/v6vut38/?pub=4',
-    color: '#0072bc'
+    id: 'bbc',
+    name: 'BBC News',
+    streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UC16niRr50-MSBwiO3YDb3RA',
+    color: '#bb1919'
   },
   {
-    id: 'cgtn',
-    name: 'CGTN',
-    streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UC-l-GT_h_12Z2b0-Qc_wAwA',
-    color: '#ff0000'
+    id: 'skynews',
+    name: 'Sky News',
+    streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UCoMdktPbSTixAyNGwb-UYkQ',
+    color: '#0072c6'
   },
   {
-    id: 'telesur',
-    name: 'Telesur',
-    streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UCPRf2gP7wqI8a_3oI0Gfziw',
-    color: '#f9a01b'
+    id: 'foxnews',
+    name: 'Fox News',
+    streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UCXIJgqnII2ZOINSWNOGFThA',
+    color: '#003366'
   },
   {
-    id: 'aljazeera',
-    name: 'Al Jazeera',
-    streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UCw2n4e6hLypqQoGxKWsY_1A',
-    color: '#ace600'
+    id: 'msnbc',
+    name: 'MSNBC',
+    streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UCaXkIU1QidjPwiAYu6GcHjg',
+    color: '#279ece'
   },
   {
-    id: 'trtworld',
-    name: 'TRT World',
-    streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UC7fWeaHhqgM4Ry-RMpM2YYw',
-    color: '#c60000'
+    id: 'bloomberg',
+    name: 'Bloomberg',
+    streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UCIALMKvObZNtJ6AmdCLP7Lg',
+    color: '#000000'
   },
   {
-    id: 'wion',
-    name: 'WION',
-    streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UC_gUM8rL-Lrg6O3adPW9K1g',
-    color: '#ff6b00'
+    id: 'reuters',
+    name: 'Reuters',
+    streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UCZvgBQ2f4tzEat6p9nhr2cQ',
+    color: '#ff8000'
   },
   {
-    id: 'cubadebate',
-    name: 'CubaDebate',
-    streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UCQvX2MSjVXqQp6_8Q6p5Z5A',
-    color: '#002395'
+    id: 'ap',
+    name: 'Associated Press',
+    streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UC52X5wxOL_s5yw0dQk7NtgA',
+    color: '#ff2b2b'
   }
 ];
 
@@ -66,7 +66,7 @@ function App() {
     <div className="App">
       {/* Netflix-style Header */}
       <header className="header">
-        <a href="#" className="logo">NEWSFLIX</a>
+        <a href="#" className="logo">NEWFLIXS</a>
         <nav className="navigation">
           <ul>
             <li><a href="#" className="active">Home</a></li>
@@ -182,7 +182,7 @@ function App() {
 
       {/* Footer */}
       <footer className="footer">
-        <p>&copy; 2025 NEWSFLIX • Global News Streaming Platform</p>
+        <p>&copy; 2025 NEWFLIXS • Global News Streaming Platform</p>
       </footer>
 
       {/* Modal for expanded view */}

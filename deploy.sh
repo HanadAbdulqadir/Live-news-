@@ -13,7 +13,7 @@ if ! grep -q "homepage" package.json; then
   echo "Adding homepage to package.json..."
   node -e "
   const package = require('./package.json');
-  package.homepage = 'https://HanadAbdulqadir.github.io/Live-news-';
+  package.homepage = 'https://HanadAbdulqadir.github.io/NEWFLIXS';
   require('fs').writeFileSync('package.json', JSON.stringify(package, null, 2));
   "
 fi
@@ -33,4 +33,4 @@ fi
 echo "Deploying to GitHub Pages..."
 npm run deploy
 
-echo "Deployment complete! Your app is live at: https://HanadAbdulqadir.github.io/Live-news-"
+echo "Deployment complete! Your app is live at: https://HanadAbdulqadir.github.io/NEWFLIXS"

@@ -1,10 +1,10 @@
-# Live News Streaming App
+# NEWFLIXS - News Streaming Platform
 
-A modern React-based news streaming application that aggregates live streams and articles from non-Western news sources.
+A modern React-based news streaming application that aggregates live streams from mainstream international news sources.
 
 ## Features
 
-- **Live Streaming**: Watch live news streams from 8 different non-Western news sources
+- **Live Streaming**: Watch live news streams from 8 mainstream international news sources
 - **Article Scraping**: Automatic fetching and display of latest articles from RSS feeds
 - **Modern UI**: Glassmorphism design with smooth animations and responsive layout
 - **Search Functionality**: Filter news sources by name
@@ -12,14 +12,14 @@ A modern React-based news streaming application that aggregates live streams and
 
 ## News Sources
 
-1. **RT News** (Russia)
-2. **Press TV News** (Iran)
-3. **CGTN News** (China)
-4. **Telesur English** (Latin America)
-5. **Al Jazeera English** (Qatar)
-6. **TRT World** (Turkey)
-7. **WION News** (India)
-8. **CubaDebate** (Cuba)
+1. **CNN** (USA)
+2. **BBC News** (UK)
+3. **Sky News** (UK)
+4. **Fox News** (USA)
+5. **MSNBC** (USA)
+6. **Bloomberg** (USA)
+7. **Reuters** (International)
+8. **Associated Press** (International)
 
 ## Technologies Used
 
