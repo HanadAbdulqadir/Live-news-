@@ -19,16 +19,13 @@ const LoadingSpinner = () => (
 );
 
 
-// Navigation Component with enhanced UX
+// Navigation Component
 const Navigation = ({ searchQuery, setSearchQuery }) => {
   const location = useLocation();
   
   return (
     <header className="header">
-      <Link to="/" className="logo">
-        <span className="logo-icon">📺</span>
-        NEWSFLIX
-      </Link>
+      <Link to="/" className="logo">NEWSFLIX</Link>
       <nav className="navigation">
         <ul>
           <li>
@@ -36,7 +33,6 @@ const Navigation = ({ searchQuery, setSearchQuery }) => {
               to="/" 
               className={location.pathname === '/' ? 'active' : ''}
             >
-              <span className="nav-icon">🏠</span>
               Home
             </Link>
           </li>
@@ -45,7 +41,6 @@ const Navigation = ({ searchQuery, setSearchQuery }) => {
               to="/countries" 
               className={location.pathname === '/countries' ? 'active' : ''}
             >
-              <span className="nav-icon">🌍</span>
               Countries
             </Link>
           </li>
@@ -54,7 +49,6 @@ const Navigation = ({ searchQuery, setSearchQuery }) => {
               to="/live" 
               className={location.pathname === '/live' ? 'active' : ''}
             >
-              <span className="nav-icon">🔴</span>
               Live
             </Link>
           </li>
@@ -63,7 +57,6 @@ const Navigation = ({ searchQuery, setSearchQuery }) => {
               to="/news" 
               className={location.pathname === '/news' ? 'active' : ''}
             >
-              <span className="nav-icon">📰</span>
               News
             </Link>
           </li>
@@ -72,20 +65,12 @@ const Navigation = ({ searchQuery, setSearchQuery }) => {
       <div className="search-container">
         <input
           type="text"
-          placeholder="🔍 Search countries, channels, categories..."
+          placeholder="Search news channels..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           className="search-input"
         />
-        {searchQuery && (
-          <button 
-            className="clear-search"
-            onClick={() => setSearchQuery('')}
-            title="Clear search"
-          >
-            ✕
-          </button>
-        )}
+        <button className="refresh-btn">🔍</button>
       </div>
     </header>
   );

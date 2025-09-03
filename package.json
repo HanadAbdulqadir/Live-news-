@@ -25,9 +25,7 @@
     "lint:fix": "eslint src/**/*.{js,jsx} --fix",
     "analyze": "npm run build && npx bundle-analyzer build/static/js/*.js",
     "audit": "npm audit --audit-level=moderate",
-    "security": "npx audit-ci --moderate",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "security": "npx audit-ci --moderate"
   },
   "eslintConfig": {
     "extends": [
@@ -63,8 +61,6 @@
     }
   },
   "devDependencies": {
-    "gh-pages": "^6.3.0",
     "jest-axe": "^7.0.0"
-  },
-  "homepage": "https://HanadAbdulqadir.github.io/NEWFLIXS"
+  }
 }
