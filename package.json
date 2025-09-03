@@ -1,27 +1,37 @@
 {
   "name": "news-streaming-app",
   "version": "1.0.0",
-  "description": "Live News Streaming from non-Western sources",
-  "main": "index.js",
+  "description": "A global news streaming platform with live channels and articles",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.3.0",
+    "@testing-library/user-event": "^13.5.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^7.8.2",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test:coverage": "react-scripts test --coverage --watchAll=false",
+    "test:accessibility": "react-scripts test --testPathPattern=\"accessibility.test.js\" --watchAll=false",
+    "test:performance": "react-scripts test --testPathPattern=\"performance.test.js\" --watchAll=false",
+    "eject": "react-scripts eject",
+    "lint": "eslint src/**/*.{js,jsx}",
+    "lint:fix": "eslint src/**/*.{js,jsx} --fix",
+    "analyze": "npm run build && npx bundle-analyzer build/static/js/*.js",
+    "audit": "npm audit --audit-level=moderate",
+    "security": "npx audit-ci --moderate"
   },
-  "keywords": [
-    "news",
-    "streaming",
-    "react",
-    "non-western"
-  ],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1",
-    "react-router-dom": "^7.8.2",
-    "react-scripts": "^5.0.1"
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
   "browserslist": {
     "production": [
@@ -34,5 +44,23 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}",
+      "!src/index.js",
+      "!src/reportWebVitals.js"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 70,
+        "functions": 70,
+        "lines": 70,
+        "statements": 70
+      }
+    }
+  },
+  "devDependencies": {
+    "jest-axe": "^7.0.0"
   }
 }

@@ -42,14 +42,85 @@ const LivePage = ({ filteredCategories, setSelectedSource }) => {
         </div>
       </section>
 
-      {/* Live Streaming Info */}
+      {/* Live Streaming Stats */}
       <section className="content-row">
-        <h2 className="row-title">About Live Streaming</h2>
-        <div className="streaming-info">
-          <p>
-            All streams are sourced directly from official news channel YouTube streams. 
-            We provide real-time coverage from trusted international news organizations.
-          </p>
+        <h2 className="row-title">📊 Live Streaming Statistics</h2>
+        <div className="stats-grid">
+          <div className="stat-card">
+            <h3>20+</h3>
+            <p>Active Live Streams</p>
+          </div>
+          <div className="stat-card">
+            <h3>15+</h3>
+            <p>Languages Supported</p>
+          </div>
+          <div className="stat-card">
+            <h3>0s</h3>
+            <p>Delay (Near Real-time)</p>
+          </div>
+          <div className="stat-card">
+            <h3>HD</h3>
+            <p>Stream Quality</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Popular Channels */}
+      <section className="content-row">
+        <h2 className="row-title">🔥 Most Popular Channels</h2>
+        <div className="popular-channels">
+          <div className="popular-channel">
+            <span className="channel-rank">1</span>
+            <span className="channel-name">CNN</span>
+            <span className="channel-viewers">📈 25K watching</span>
+          </div>
+          <div className="popular-channel">
+            <span className="channel-rank">2</span>
+            <span className="channel-name">BBC News</span>
+            <span className="channel-viewers">📈 18K watching</span>
+          </div>
+          <div className="popular-channel">
+            <span className="channel-rank">3</span>
+            <span className="channel-name">Al Jazeera</span>
+            <span className="channel-viewers">📈 15K watching</span>
+          </div>
+          <div className="popular-channel">
+            <span className="channel-rank">4</span>
+            <span className="channel-name">France 24</span>
+            <span className="channel-viewers">📈 12K watching</span>
+          </div>
+          <div className="popular-channel">
+            <span className="channel-rank">5</span>
+            <span className="channel-name">DW News</span>
+            <span className="channel-viewers">📈 10K watching</span>
+          </div>
+        </div>
+      </section>
+
+      {/* Streaming Features */}
+      <section className="content-row">
+        <h2 className="row-title">⭐ Premium Features</h2>
+        <div className="features-grid">
+          <div className="feature-card">
+            <div className="feature-icon">🎯</div>
+            <h3>Real-time Coverage</h3>
+            <p>Watch events unfold live as they happen around the world</p>
+          </div>
+          <div className="feature-card">
+            <div className="feature-icon">🌍</div>
+            <h3>Global Perspective</h3>
+            <p>Access news from multiple international viewpoints</p>
+          </div>
+          <div className="feature-card">
+            <div className="feature-icon">📱</div>
+            <h3>Multi-device Support</h3>
+            <p>Watch on desktop, tablet, or mobile devices</p>
+          </div>
+          <div className="feature-card">
+            <div className="feature-icon">⚡</div>
+            <h3>Instant Updates</h3>
+            <p>Get breaking news alerts and live updates</p>
+          </div>
         </div>
       </section>
     </div>

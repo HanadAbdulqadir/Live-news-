@@ -1,0 +1,63 @@
+
+> news-streaming-app@1.0.0 build
+> react-scripts build
+
+Creating an optimized production build...
+Compiled with warnings.
+
+[eslint] 
+src/CountriesPage.js
+  Line 38:9:  'filteredCountries' is assigned a value but never used  no-unused-vars
+
+src/CountryPage.js
+  Line 56:5:   Duplicate key 'CBC News'                           no-dupe-keys
+  Line 57:5:   Duplicate key 'CTV News'                           no-dupe-keys
+  Line 58:5:   Duplicate key 'Global News'                        no-dupe-keys
+  Line 66:5:   Duplicate key 'BBC News'                           no-dupe-keys
+  Line 67:5:   Duplicate key 'Sky News'                           no-dupe-keys
+  Line 68:5:   Duplicate key 'ITV News'                           no-dupe-keys
+  Line 71:5:   Duplicate key 'France 24'                          no-dupe-keys
+  Line 76:5:   Duplicate key 'DW News'                            no-dupe-keys
+  Line 81:5:   Duplicate key 'ABC News Australia'                 no-dupe-keys
+  Line 86:5:   Duplicate key 'NDTV India'                         no-dupe-keys
+  Line 87:5:   Duplicate key 'Republic TV'                        no-dupe-keys
+  Line 88:5:   Duplicate key 'Times Now'                          no-dupe-keys
+  Line 91:5:   Duplicate key 'NHK World'                          no-dupe-keys
+  Line 96:5:   Duplicate key 'CGTN'                               no-dupe-keys
+  Line 125:9:  'getStreamUrl' is assigned a value but never used  no-unused-vars
+
+src/HomeTab.js
+  Line 76:15:   The href attribute requires a valid value to be accessible. Provide a valid, navigable address as the href value. If you cannot provide a valid href, but still need the element to resemble a link, use a button and change it with appropriate styles. Learn more: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/anchor-is-valid.md  jsx-a11y/anchor-is-valid
+  Line 88:15:   The href attribute requires a valid value to be accessible. Provide a valid, navigable address as the href value. If you cannot provide a valid href, but still need the element to resemble a link, use a button and change it with appropriate styles. Learn more: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/anchor-is-valid.md  jsx-a11y/anchor-is-valid
+  Line 100:15:  The href attribute requires a valid value to be accessible. Provide a valid, navigable address as the href value. If you cannot provide a valid href, but still need the element to resemble a link, use a button and change it with appropriate styles. Learn more: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/anchor-is-valid.md  jsx-a11y/anchor-is-valid
+  Line 112:15:  The href attribute requires a valid value to be accessible. Provide a valid, navigable address as the href value. If you cannot provide a valid href, but still need the element to resemble a link, use a button and change it with appropriate styles. Learn more: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/anchor-is-valid.md  jsx-a11y/anchor-is-valid
+
+src/NewsPage.js
+  Line 100:6:  React Hook useEffect has a missing dependency: 'newsArticles'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+File sizes after gzip:
+
+  62.7 kB  build/static/js/main.a675e5a9.js
+  6.56 kB  build/static/css/main.a1c182b1.css
+  6.02 kB  build/static/js/324.bee65864.chunk.js
+  5.38 kB  build/static/js/145.0f3c1304.chunk.js
+  2.82 kB  build/static/js/722.b9b1b00c.chunk.js
+  1.51 kB  build/static/js/442.a350858a.chunk.js
+  1.12 kB  build/static/js/551.740e24f9.chunk.js
+
+The project was built assuming it is hosted at /.
+You can control this with the homepage field in your package.json.
+
+The build folder is ready to be deployed.
+You may serve it with a static server:
+
+  npm install -g serve
+  serve -s build
+
+Find out more about deployment here:
+
+  https://cra.link/deployment
+

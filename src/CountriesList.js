@@ -1,7 +1,11 @@
-import React from 'react';
-import { ALL_COUNTRIES, getNewsSourcesForCountry } from './countries';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { ALL_COUNTRIES, getNewsSourcesForCountry, getNewsSourceData } from './countries';
 
-const CountriesList = ({ onCountrySelect }) => {
+const CountriesList = ({ onCountrySelect, onSourceSelect }) => {
+  const navigate = useNavigate();
+  const [hoveredSource, setHoveredSource] = useState(null);
+
   const continents = {
     'North America': ALL_COUNTRIES.slice(0, 3),
     'Central America': ALL_COUNTRIES.slice(3, 10),
@@ -25,20 +29,80 @@ const CountriesList = ({ onCountrySelect }) => {
           <h3 className="continent-title">{continent}</h3>
           <div className="countries-grid">
             {countries.map(country => (
-              <div
+              <Link
                 key={country}
-                className="country-card"
-                onClick={() => onCountrySelect(country)}
+                to={`/country/${encodeURIComponent(country)}`}
+                className="country-card-link"
               >
-                <h4 className="country-name">{country}</h4>
-                <div className="country-sources">
-                  {getNewsSourcesForCountry(country).map((source, index) => (
-                    <span key={index} className="source-tag">
-                      {source}
+                <div
+                  className="country-card"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onCountrySelect(country);
+                  }}
+                >
+                  <h4 className="country-name">
+                    <span className="country-flag">🌍</span>
+                    {country}
+                  </h4>
+                  <div className="country-sources">
+                    {getNewsSourcesForCountry(country).slice(0, 3).map((source, index) => {
+                      const sourceData = getNewsSourceData(country).find(s => s.name === source);
+                      return (
+                        <span 
+                          key={index} 
+                          className="source-tag"
+                          style={{ 
+                            backgroundColor: sourceData?.color || '#404040',
+                            borderColor: sourceData?.color || '#555'
+                          }}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            e.preventDefault();
+                            if (onSourceSelect && sourceData) {
+                              onSourceSelect(sourceData, country);
+                              navigate(`/country/${encodeURIComponent(country)}`);
+                            }
+                          }}
+                          onMouseEnter={() => setHoveredSource(`${country}-${source}`)}
+                          onMouseLeave={() => setHoveredSource(null)}
+                          title={`Watch ${source} from ${country}`}
+                        >
+                          {source}
+                        </span>
+                      );
+                    })}
+                    {getNewsSourcesForCountry(country).length > 3 && (
+                      <span 
+                        className="source-tag"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          e.preventDefault();
+                          navigate(`/country/${encodeURIComponent(country)}`);
+                        }}
+                        title={`View all ${getNewsSourcesForCountry(country).length} channels from ${country}`}
+                      >
+                        +{getNewsSourcesForCountry(country).length - 3} more
+                      </span>
+                    )}
+                  </div>
+                  <div className="country-stats">
+                    <span className="stat-item">
+                      <span className="stat-icon">📺</span>
+                      {getNewsSourcesForCountry(country).length} channels
                     </span>
-                  ))}
+                    <span className="stat-item">
+                      <span className="stat-icon">⭐</span>
+                      {Math.floor(Math.random() * 5) + 1}/5
+                    </span>
+                  </div>
+                  {hoveredSource && hoveredSource.startsWith(`${country}-`) && (
+                    <div className="source-tooltip">
+                      Click to watch {hoveredSource.split('-')[1]} from {country}
+                    </div>
+                  )}
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

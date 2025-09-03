@@ -43,53 +43,92 @@ const HomeTab = ({ filteredCategories, setSelectedSource }) => {
         </section>
       ))}
 
+      {/* Quick Stats Section */}
+      <section className="content-row">
+        <h2 className="row-title">Global Coverage</h2>
+        <div className="stats-grid">
+          <div className="stat-card">
+            <h3>50+</h3>
+            <p>Countries Covered</p>
+          </div>
+          <div className="stat-card">
+            <h3>200+</h3>
+            <p>News Channels</p>
+          </div>
+          <div className="stat-card">
+            <h3>24/7</h3>
+            <p>Live Streaming</p>
+          </div>
+          <div className="stat-card">
+            <h3>Global</h3>
+            <p>Real-time Coverage</p>
+          </div>
+        </div>
+      </section>
+
       {/* Featured Articles Section */}
       <section className="articles-section">
-        <h2 className="articles-title">Latest Headlines</h2>
+        <h2 className="articles-title">📰 Latest Headlines</h2>
         <div className="articles-grid">
           <div className="article-card">
+            <div className="article-category breaking">Breaking News</div>
             <h4 className="article-title">
               <a href="#" target="_blank" rel="noopener noreferrer">
-                Breaking: Major developments in international relations
+                Global Summit: World Leaders Agree on Climate Action Plan
               </a>
             </h4>
             <p className="article-description">
-              World leaders meet to discuss global economic cooperation and security challenges...
+              Historic agreement reached as nations commit to carbon neutrality by 2050 with immediate funding for renewable energy projects...
             </p>
-            <span className="article-date">2 hours ago</span>
+            <span className="article-date">Just now • 🌍 Environment</span>
           </div>
           <div className="article-card">
+            <div className="article-category politics">Politics</div>
             <h4 className="article-title">
               <a href="#" target="_blank" rel="noopener noreferrer">
-                Economic summit concludes with new trade agreements
+                Diplomatic Breakthrough: Peace Talks Resume in Conflict Zones
               </a>
             </h4>
             <p className="article-description">
-              Historic trade deals signed between multiple nations, promising economic growth...
+              International mediators report significant progress as warring parties agree to ceasefire and humanitarian corridors...
             </p>
-            <span className="article-date">4 hours ago</span>
+            <span className="article-date">30 mins ago • 🕊️ Politics</span>
           </div>
           <div className="article-card">
+            <div className="article-category tech">Technology</div>
             <h4 className="article-title">
               <a href="#" target="_blank" rel="noopener noreferrer">
-                Climate conference addresses global warming concerns
+                AI Revolution: New Breakthrough in Quantum Computing
               </a>
             </h4>
             <p className="article-description">
-              International community commits to new environmental targets and sustainability goals...
+              Scientists achieve quantum supremacy with new processor capable of solving complex problems in seconds instead of years...
             </p>
-            <span className="article-date">6 hours ago</span>
+            <span className="article-date">1 hour ago • 🤖 Technology</span>
           </div>
           <div className="article-card">
+            <div className="article-category economy">Economy</div>
             <h4 className="article-title">
               <a href="#" target="_blank" rel="noopener noreferrer">
-                Technology summit showcases innovation breakthroughs
+                Markets Soar as Global Economic Recovery Exceeds Expectations
               </a>
             </h4>
             <p className="article-description">
-              Revolutionary technologies unveiled that could transform industries and daily life...
+              Stock markets hit record highs as economic indicators show stronger than predicted recovery across major economies...
             </p>
-            <span className="article-date">8 hours ago</span>
+            <span className="article-date">2 hours ago • 💰 Economy</span>
+          </div>
+        </div>
+      </section>
+
+      {/* Call to Action */}
+      <section className="cta-section">
+        <div className="cta-content">
+          <h2>Start Watching Global News Now</h2>
+          <p>Access live streams from trusted news sources around the world. Stay informed with real-time coverage.</p>
+          <div className="cta-buttons">
+            <a href="/live" className="cta-button primary">Watch Live News</a>
+            <a href="/countries" className="cta-button secondary">Browse by Country</a>
           </div>
         </div>
       </section>

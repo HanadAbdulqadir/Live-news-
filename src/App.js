@@ -1,54 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, lazy, Suspense, useEffect, useMemo } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import './App.css';
-import HomeTab from './HomeTab';
-import CountriesPage from './CountriesPage';
-import LivePage from './LivePage';
-import NewsPage from './NewsPage';
+import { GLOBAL_NEWS_SOURCES, getSourcesByContinent, searchSources, getLiveStreams, getWebsiteSources } from './globalNewsData';
 
-// News sources organized by continents
-const NEWS_CATEGORIES = [
-  {
-    id: 'north-america',
-    title: 'North America',
-    sources: [
-      {
-        id: 'cnn',
-        name: 'CNN',
-        streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UCupvZG-5ko_eiXAupbDfxWw',
-        color: '#cc0000',
-        country: 'USA'
-      },
-      {
-        id: 'foxnews',
-        name: 'Fox News',
-        streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UCXIJgqnII2ZOINSWNOGFThA',
-        color: '#003366',
-        country: 'USA'
-      }
-    ]
-  },
-  {
-    id: 'europe',
-    title: 'Europe',
-    sources: [
-      {
-        id: 'bbc',
-        name: 'BBC News',
-        streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UC16niRr50-MSBwiO3YDb3RA',
-        color: '#bb1919',
-        country: 'UK'
-      },
-      {
-        id: 'france24',
-        name: 'France 24',
-        streamUrl: 'https://www.youtube.com/embed/live_stream?channel=UCQfwfsi5VrQ8yKZ-UWmAEFg',
-        color: '#0055a4',
-        country: 'France'
-      }
-    ]
-  }
-];
+// Lazy load components for better performance
+const HomeTab = lazy(() => import('./HomeTab'));
+const CountriesPage = lazy(() => import('./CountriesPage'));
+const CountryPage = lazy(() => import('./CountryPage'));
+const LivePage = lazy(() => import('./LivePage'));
+const NewsPage = lazy(() => import('./NewsPage'));
+
+// Loading component for Suspense fallback
+const LoadingSpinner = () => (
+  <div className="loading">
+    <div className="loading-spinner"></div>
+    <p>Loading news channels...</p>
+  </div>
+);
+
 
 // Navigation Component
 const Navigation = ({ searchQuery, setSearchQuery }) => {
@@ -107,75 +76,163 @@ const Navigation = ({ searchQuery, setSearchQuery }) => {
   );
 };
 
+// Error Boundary Component
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false, error: null };
+  }
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true, error };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    console.error('App Error:', error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="error-boundary">
+          <h2>Something went wrong</h2>
+          <p>We're having trouble loading the news channels.</p>
+          <button 
+            onClick={() => window.location.reload()}
+            className="refresh-btn"
+          >
+            Try Again
+          </button>
+        </div>
+      );
+    }
+
+    return this.props.children;
+  }
+}
+
+// Custom hook for search with debouncing
+const useDebouncedSearch = (initialValue = '', delay = 300) => {
+  const [searchQuery, setSearchQuery] = useState(initialValue);
+  const [debouncedQuery, setDebouncedQuery] = useState(initialValue);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedQuery(searchQuery);
+    }, delay);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [searchQuery, delay]);
+
+  return [searchQuery, debouncedQuery, setSearchQuery];
+};
+
+// Memoized filtered categories
+const useFilteredCategories = (debouncedQuery) => {
+  return useMemo(() => {
+    const continents = getSourcesByContinent();
+    return Object.entries(continents).map(([continent, countries]) => ({
+      id: continent.toLowerCase().replace(/\s+/g, '-'),
+      title: continent,
+      sources: countries.flatMap(country => 
+        country.sources.filter(source =>
+          source.name.toLowerCase().includes(debouncedQuery.toLowerCase()) ||
+          country.name.toLowerCase().includes(debouncedQuery.toLowerCase()) ||
+          source.category.toLowerCase().includes(debouncedQuery.toLowerCase()) ||
+          source.description.toLowerCase().includes(debouncedQuery.toLowerCase())
+        ).map(source => ({
+          ...source,
+          country: country.name,
+          flag: country.flag,
+          continent: continent
+        }))
+      )
+    })).filter(category => category.sources.length > 0);
+  }, [debouncedQuery]);
+};
+
 // Main App Component
 function App() {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, debouncedQuery, setSearchQuery] = useDebouncedSearch('', 300);
   const [selectedSource, setSelectedSource] = useState(null);
+  const filteredCategories = useFilteredCategories(debouncedQuery);
 
-  // Filter sources based on search query
-  const filteredCategories = NEWS_CATEGORIES.map(category => ({
-    ...category,
-    sources: category.sources.filter(source =>
-      source.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      source.country.toLowerCase().includes(searchQuery.toLowerCase())
-    )
-  })).filter(category => category.sources.length > 0);
+  // Memoized navigation component to prevent unnecessary re-renders
+  const memoizedNavigation = useMemo(() => (
+    <Navigation searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+  ), [searchQuery, setSearchQuery]);
+
+  // Memoized footer to prevent unnecessary re-renders
+  const memoizedFooter = useMemo(() => (
+    <footer className="footer">
+      <p>&copy; 2025 NEWSFLIX • Global News Streaming Platform</p>
+    </footer>
+  ), []);
 
   return (
-    <Router>
-      <div className="App">
-        <Navigation searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-        
-        <main className="main-content">
-          <Routes>
-            <Route path="/" element={
-              <HomeTab 
-                filteredCategories={filteredCategories} 
-                setSelectedSource={setSelectedSource} 
-              />
-            } />
-            <Route path="/countries" element={
-              <CountriesPage 
-                onCountrySelect={(country) => setSearchQuery(country)}
-              />
-            } />
-            <Route path="/live" element={
-              <LivePage 
-                filteredCategories={filteredCategories}
-                setSelectedSource={setSelectedSource}
-              />
-            } />
-            <Route path="/news" element={<NewsPage />} />
-          </Routes>
-        </main>
+    <ErrorBoundary>
+      <Router>
+        <div className="App">
+          {memoizedNavigation}
+          
+          <main className="main-content">
+            <Suspense fallback={<LoadingSpinner />}>
+              <Routes>
+                <Route path="/" element={
+                  <HomeTab 
+                    filteredCategories={filteredCategories} 
+                    setSelectedSource={setSelectedSource} 
+                  />
+                } />
+                <Route path="/countries" element={
+                  <CountriesPage 
+                    onCountrySelect={(country) => setSearchQuery(country)}
+                    onSourceSelect={(source, country) => {
+                      // Navigate to the country page when a source is clicked
+                      window.location.href = `/country/${encodeURIComponent(country)}`;
+                    }}
+                  />
+                } />
+                <Route path="/live" element={
+                  <LivePage 
+                    filteredCategories={filteredCategories}
+                    setSelectedSource={setSelectedSource}
+                  />
+                } />
+                <Route path="/news" element={<NewsPage />} />
+                <Route path="/country/:countryName" element={<CountryPage />} />
+              </Routes>
+            </Suspense>
+          </main>
 
-        <footer className="footer">
-          <p>&copy; 2025 NEWSFLIX • Global News Streaming Platform</p>
-        </footer>
+          {memoizedFooter}
 
-        {/* Modal for expanded view */}
-        {selectedSource && (
-          <div className="modal" onClick={() => setSelectedSource(null)}>
-            <div className="modal-content" onClick={e => e.stopPropagation()}>
-              <div className="modal-header">
-                <h2 className="modal-title">{selectedSource.name}</h2>
-                <button className="close-modal" onClick={() => setSelectedSource(null)}>
-                  ×
-                </button>
-              </div>
-              <div className="modal-body">
-                <iframe
-                  src={selectedSource.streamUrl}
-                  title={selectedSource.name}
-                  allowFullScreen
-                  style={{ width: '100%', height: '500px', border: 'none' }}
-                />
+          {/* Modal for expanded view */}
+          {selectedSource && (
+            <div className="modal" onClick={() => setSelectedSource(null)}>
+              <div className="modal-content" onClick={e => e.stopPropagation()}>
+                <div className="modal-header">
+                  <h2 className="modal-title">{selectedSource.name}</h2>
+                  <button className="close-modal" onClick={() => setSelectedSource(null)}>
+                    ×
+                  </button>
+                </div>
+                <div className="modal-body">
+                  <iframe
+                    src={selectedSource.streamUrl}
+                    title={selectedSource.name}
+                    allowFullScreen
+                    style={{ width: '100%', height: '500px', border: 'none' }}
+                  />
+                </div>
               </div>
             </div>
-          </div>
-        )}
-      </div>
-    </Router>
+          )}
+        </div>
+      </Router>
+    </ErrorBoundary>
   );
 }
 
