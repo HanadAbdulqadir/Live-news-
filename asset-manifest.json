@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/NEWFLIXS/static/css/main.ff76b97a.css",
-    "main.js": "/NEWFLIXS/static/js/main.19399d1d.js",
+    "main.css": "/NEWFLIXS/static/css/main.9eb79105.css",
+    "main.js": "/NEWFLIXS/static/js/main.2af7bec6.js",
     "static/js/442.a350858a.chunk.js": "/NEWFLIXS/static/js/442.a350858a.chunk.js",
     "static/js/324.bee65864.chunk.js": "/NEWFLIXS/static/js/324.bee65864.chunk.js",
     "static/js/145.0f3c1304.chunk.js": "/NEWFLIXS/static/js/145.0f3c1304.chunk.js",
     "static/js/551.740e24f9.chunk.js": "/NEWFLIXS/static/js/551.740e24f9.chunk.js",
     "static/js/722.b9b1b00c.chunk.js": "/NEWFLIXS/static/js/722.b9b1b00c.chunk.js",
     "index.html": "/NEWFLIXS/index.html",
-    "main.ff76b97a.css.map": "/NEWFLIXS/static/css/main.ff76b97a.css.map",
-    "main.19399d1d.js.map": "/NEWFLIXS/static/js/main.19399d1d.js.map",
+    "main.9eb79105.css.map": "/NEWFLIXS/static/css/main.9eb79105.css.map",
+    "main.2af7bec6.js.map": "/NEWFLIXS/static/js/main.2af7bec6.js.map",
     "442.a350858a.chunk.js.map": "/NEWFLIXS/static/js/442.a350858a.chunk.js.map",
     "324.bee65864.chunk.js.map": "/NEWFLIXS/static/js/324.bee65864.chunk.js.map",
     "145.0f3c1304.chunk.js.map": "/NEWFLIXS/static/js/145.0f3c1304.chunk.js.map",
@@ -17,7 +17,7 @@
     "722.b9b1b00c.chunk.js.map": "/NEWFLIXS/static/js/722.b9b1b00c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ff76b97a.css",
-    "static/js/main.19399d1d.js"
+    "static/css/main.9eb79105.css",
+    "static/js/main.2af7bec6.js"
   ]
 }
