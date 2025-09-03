@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/NEWFLIXS/static/css/main.a1c182b1.css",
+    "main.js": "/NEWFLIXS/static/js/main.ad362631.js",
+    "static/js/442.a350858a.chunk.js": "/NEWFLIXS/static/js/442.a350858a.chunk.js",
+    "static/js/324.bee65864.chunk.js": "/NEWFLIXS/static/js/324.bee65864.chunk.js",
+    "static/js/145.0f3c1304.chunk.js": "/NEWFLIXS/static/js/145.0f3c1304.chunk.js",
+    "static/js/551.740e24f9.chunk.js": "/NEWFLIXS/static/js/551.740e24f9.chunk.js",
+    "static/js/722.b9b1b00c.chunk.js": "/NEWFLIXS/static/js/722.b9b1b00c.chunk.js",
+    "index.html": "/NEWFLIXS/index.html",
+    "main.a1c182b1.css.map": "/NEWFLIXS/static/css/main.a1c182b1.css.map",
+    "main.ad362631.js.map": "/NEWFLIXS/static/js/main.ad362631.js.map",
+    "442.a350858a.chunk.js.map": "/NEWFLIXS/static/js/442.a350858a.chunk.js.map",
+    "324.bee65864.chunk.js.map": "/NEWFLIXS/static/js/324.bee65864.chunk.js.map",
+    "145.0f3c1304.chunk.js.map": "/NEWFLIXS/static/js/145.0f3c1304.chunk.js.map",
+    "551.740e24f9.chunk.js.map": "/NEWFLIXS/static/js/551.740e24f9.chunk.js.map",
+    "722.b9b1b00c.chunk.js.map": "/NEWFLIXS/static/js/722.b9b1b00c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a1c182b1.css",
+    "static/js/main.ad362631.js"
+  ]
+}
