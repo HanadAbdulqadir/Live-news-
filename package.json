@@ -11,21 +11,8 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^7.8.2",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "test:coverage": "react-scripts test --coverage --watchAll=false",
-    "test:accessibility": "react-scripts test --testPathPattern=\"accessibility.test.js\" --watchAll=false",
-    "test:performance": "react-scripts test --testPathPattern=\"performance.test.js\" --watchAll=false",
-    "eject": "react-scripts eject",
-    "lint": "eslint src/**/*.{js,jsx}",
-    "lint:fix": "eslint src/**/*.{js,jsx} --fix",
-    "analyze": "npm run build && npx bundle-analyzer build/static/js/*.js",
-    "audit": "npm audit --audit-level=moderate",
-    "security": "npx audit-ci --moderate"
+    "web-vitals": "^2.1.4",
+    "workbox-webpack-plugin": "^7.3.0"
   },
   "eslintConfig": {
     "extends": [
@@ -61,6 +48,24 @@
     }
   },
   "devDependencies": {
+    "gh-pages": "^6.3.0",
     "jest-axe": "^7.0.0"
+  },
+  "homepage": "https://HanadAbdulqadir.github.io/NEWFLIXS",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "test:coverage": "react-scripts test --coverage --watchAll=false",
+    "test:accessibility": "react-scripts test --testPathPattern=\"accessibility.test.js\" --watchAll=false",
+    "test:performance": "react-scripts test --testPathPattern=\"performance.test.js\" --watchAll=false",
+    "eject": "react-scripts eject",
+    "lint": "eslint src/**/*.{js,jsx}",
+    "lint:fix": "eslint src/**/*.{js,jsx} --fix",
+    "analyze": "npm run build && npx bundle-analyzer build/static/js/*.js",
+    "audit": "npm audit --audit-level=moderate",
+    "security": "npx audit-ci --moderate",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   }
 }

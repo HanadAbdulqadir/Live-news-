@@ -19,13 +19,16 @@ const LoadingSpinner = () => (
 );
 
 
-// Navigation Component
+// Enhanced Navigation Component with icons and improved UX
 const Navigation = ({ searchQuery, setSearchQuery }) => {
   const location = useLocation();
   
   return (
     <header className="header">
-      <Link to="/" className="logo">NEWSFLIX</Link>
+      <Link to="/" className="logo">
+        <span className="logo-icon">📺</span>
+        NEWSFLIX
+      </Link>
       <nav className="navigation">
         <ul>
           <li>
@@ -33,6 +36,7 @@ const Navigation = ({ searchQuery, setSearchQuery }) => {
               to="/" 
               className={location.pathname === '/' ? 'active' : ''}
             >
+              <span className="nav-icon">🏠</span>
               Home
             </Link>
           </li>
@@ -41,6 +45,7 @@ const Navigation = ({ searchQuery, setSearchQuery }) => {
               to="/countries" 
               className={location.pathname === '/countries' ? 'active' : ''}
             >
+              <span className="nav-icon">🌍</span>
               Countries
             </Link>
           </li>
@@ -49,6 +54,7 @@ const Navigation = ({ searchQuery, setSearchQuery }) => {
               to="/live" 
               className={location.pathname === '/live' ? 'active' : ''}
             >
+              <span className="nav-icon">🔴</span>
               Live
             </Link>
           </li>
@@ -57,6 +63,7 @@ const Navigation = ({ searchQuery, setSearchQuery }) => {
               to="/news" 
               className={location.pathname === '/news' ? 'active' : ''}
             >
+              <span className="nav-icon">📰</span>
               News
             </Link>
           </li>
@@ -65,12 +72,20 @@ const Navigation = ({ searchQuery, setSearchQuery }) => {
       <div className="search-container">
         <input
           type="text"
-          placeholder="Search news channels..."
+          placeholder="🔍 Search countries, channels, categories..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           className="search-input"
         />
-        <button className="refresh-btn">🔍</button>
+        {searchQuery && (
+          <button 
+            className="clear-search"
+            onClick={() => setSearchQuery('')}
+            title="Clear search"
+          >
+            ✕
+          </button>
+        )}
       </div>
     </header>
   );
@@ -111,10 +126,16 @@ class ErrorBoundary extends React.Component {
   }
 }
 
-// Custom hook for search with debouncing
-const useDebouncedSearch = (initialValue = '', delay = 300) => {
+// Custom hook for search with debouncing and advanced filtering
+const useAdvancedSearch = (initialValue = '', delay = 300) => {
   const [searchQuery, setSearchQuery] = useState(initialValue);
   const [debouncedQuery, setDebouncedQuery] = useState(initialValue);
+  const [filters, setFilters] = useState({
+    category: 'all',
+    continent: 'all',
+    language: 'all',
+    isLive: false
+  });
 
   useEffect(() => {
     const handler = setTimeout(() => {
@@ -126,38 +147,65 @@ const useDebouncedSearch = (initialValue = '', delay = 300) => {
     };
   }, [searchQuery, delay]);
 
-  return [searchQuery, debouncedQuery, setSearchQuery];
+  const updateFilter = (filterType, value) => {
+    setFilters(prev => ({
+      ...prev,
+      [filterType]: value
+    }));
+  };
+
+  return [searchQuery, debouncedQuery, setSearchQuery, filters, updateFilter];
 };
 
-// Memoized filtered categories
-const useFilteredCategories = (debouncedQuery) => {
+// Memoized filtered categories with performance optimizations
+const useFilteredCategories = (debouncedQuery, filters) => {
   return useMemo(() => {
     const continents = getSourcesByContinent();
-    return Object.entries(continents).map(([continent, countries]) => ({
-      id: continent.toLowerCase().replace(/\s+/g, '-'),
-      title: continent,
-      sources: countries.flatMap(country => 
-        country.sources.filter(source =>
-          source.name.toLowerCase().includes(debouncedQuery.toLowerCase()) ||
-          country.name.toLowerCase().includes(debouncedQuery.toLowerCase()) ||
-          source.category.toLowerCase().includes(debouncedQuery.toLowerCase()) ||
-          source.description.toLowerCase().includes(debouncedQuery.toLowerCase())
-        ).map(source => ({
-          ...source,
-          country: country.name,
-          flag: country.flag,
-          continent: continent
-        }))
-      )
-    })).filter(category => category.sources.length > 0);
-  }, [debouncedQuery]);
+    const query = debouncedQuery.toLowerCase();
+    
+    return Object.entries(continents)
+      .map(([continent, countries]) => {
+        const filteredSources = countries.flatMap(country => 
+          country.sources
+            .filter(source => {
+              // Apply search query filter
+              const matchesQuery = 
+                source.name.toLowerCase().includes(query) ||
+                country.name.toLowerCase().includes(query) ||
+                source.category.toLowerCase().includes(query) ||
+                source.description.toLowerCase().includes(query);
+              
+              // Apply additional filters
+              const matchesCategory = filters.category === 'all' || source.category === filters.category;
+              const matchesContinent = filters.continent === 'all' || continent === filters.continent;
+              const matchesLanguage = filters.language === 'all' || source.language === filters.language;
+              const matchesLive = !filters.isLive || source.isLive;
+              
+              return matchesQuery && matchesCategory && matchesContinent && matchesLanguage && matchesLive;
+            })
+            .map(source => ({
+              ...source,
+              country: country.name,
+              flag: country.flag,
+              continent: continent
+            }))
+        );
+        
+        return {
+          id: continent.toLowerCase().replace(/\s+/g, '-'),
+          title: continent,
+          sources: filteredSources
+        };
+      })
+      .filter(category => category.sources.length > 0);
+  }, [debouncedQuery, filters]);
 };
 
 // Main App Component
 function App() {
-  const [searchQuery, debouncedQuery, setSearchQuery] = useDebouncedSearch('', 300);
+  const [searchQuery, debouncedQuery, setSearchQuery, filters, updateFilter] = useAdvancedSearch('', 300);
   const [selectedSource, setSelectedSource] = useState(null);
-  const filteredCategories = useFilteredCategories(debouncedQuery);
+  const filteredCategories = useFilteredCategories(debouncedQuery, filters);
 
   // Memoized navigation component to prevent unnecessary re-renders
   const memoizedNavigation = useMemo(() => (
