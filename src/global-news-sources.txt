@@ -1,0 +1,47 @@
+Comprehensive Global News Sources:
+
+NORTH AMERICA:
+- CNN (USA)
+- Fox News (USA)
+- MSNBC (USA)
+- CBC News (Canada)
+- CTV News (Canada)
+
+EUROPE:
+- BBC News (UK)
+- Sky News (UK)
+- France 24 (France)
+- DW News (Germany)
+- Euronews (Pan-European)
+
+ASIA:
+- Al Jazeera (Qatar)
+- CGTN (China)
+- NHK World (Japan)
+- Arirang TV (South Korea)
+- WION (India)
+
+MIDDLE EAST:
+- Al Arabiya (Saudi Arabia)
+- TRT World (Turkey)
+- Iran International
+- i24 News (Israel)
+
+LATIN AMERICA:
+- TeleSUR (Venezuela)
+- GloboNews (Brazil)
+- TV Azteca (Mexico)
+- Canal 26 (Argentina)
+
+AFRICA:
+- SABC News (South Africa)
+- NTA (Nigeria)
+- KBC (Kenya)
+- Egypt Today
+
+OCEANIA:
+- ABC News (Australia)
+- TVNZ (New Zealand)
+- Sky News Australia
+
+This list provides comprehensive global coverage from all continents and major regions.
