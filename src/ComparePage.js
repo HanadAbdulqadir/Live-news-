@@ -22,7 +22,12 @@ const defaultSelection = (sources) => {
 };
 
 // All panes start muted: four live newsrooms at once is unusable otherwise.
-const paneSrc = (streamUrl) => `${streamUrl}&autoplay=1&mute=1`;
+// The two platforms take different parameters, and appending YouTube's to a
+// Rumble URL just breaks it.
+const paneSrc = (source) =>
+  source.platform === 'rumble'
+    ? `${source.streamUrl}?autoplay=2&muted=1`
+    : `${source.streamUrl}&autoplay=1&mute=1`;
 
 const CountryPicker = () => {
   const countries = useMemo(() => getPerspectiveCountries(), []);
@@ -142,6 +147,9 @@ const ComparePage = () => {
                 </span>
                 <span className="compare-pane-name">{source.name}</span>
                 {source.origin && <span className="compare-pane-origin">{source.origin}</span>}
+                {source.platform === 'rumble' && (
+                  <span className="compare-pane-platform">Rumble</span>
+                )}
                 <button
                   type="button"
                   className="compare-pane-close"
@@ -152,7 +160,7 @@ const ComparePage = () => {
                 </button>
               </div>
               <iframe
-                src={paneSrc(source.streamUrl)}
+                src={paneSrc(source)}
                 title={source.name}
                 allowFullScreen
                 allow="autoplay; encrypted-media; fullscreen"

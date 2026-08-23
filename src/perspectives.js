@@ -9,6 +9,7 @@
 // carry a websiteUrl and are shown as links, never as a player.
 
 import { VERIFIED_CHANNELS, getStreamUrl, getChannelUrl } from './verifiedStreams';
+import { RUMBLE_CHANNELS, getRumbleStreamUrl, getRumbleWatchUrl } from './rumbleStreams';
 
 export const TIERS = {
   state: {
@@ -53,8 +54,9 @@ const PERSPECTIVES = {
       {
         tier: 'state',
         name: 'Press TV',
+        rumble: 'Press TV',
         websiteUrl: 'https://www.presstv.ir/live',
-        note: 'Removed from YouTube. Live feed runs on the broadcaster site and its Rumble channel.',
+        note: 'Not on YouTube. Watched through its pinned Rumble stream, or the broadcaster site.',
       },
       { tier: 'state', name: 'IRIB News', websiteUrl: 'https://www.iribnews.ir/' },
       { tier: 'external', channel: 'Iran International' },
@@ -73,8 +75,9 @@ const PERSPECTIVES = {
       {
         tier: 'state',
         name: 'RT',
+        rumble: 'RT',
         websiteUrl: 'https://rumble.com/c/RTNews',
-        note: 'Removed from YouTube in 2022. Official 24/7 feed is on Rumble, which has no stable embed ID.',
+        note: 'Removed from YouTube in 2022. Its Rumble 24/7 slot has held the same embed ID since March 2022.',
       },
       { tier: 'state', name: 'Rossiya 24', websiteUrl: 'https://www.vesti.ru/' },
       { tier: 'international', channel: 'DW News' },
@@ -379,8 +382,14 @@ export const getPerspectives = (country) => {
 
   const sources = entry.sources.map((source, index) => {
     const key = source.channel;
+    const rumbleKey = source.rumble;
     const verified = key ? VERIFIED_CHANNELS[key] : null;
-    const streamUrl = key ? getStreamUrl(key) : null;
+    // A broadcaster reaches us on YouTube or on Rumble, never both at once.
+    const streamUrl = key
+      ? getStreamUrl(key)
+      : rumbleKey
+      ? getRumbleStreamUrl(rumbleKey)
+      : null;
     return {
       id: `${(key || source.name).toLowerCase().replace(/[^a-z0-9]+/g, '-')}-${index}`,
       name: key || source.name,
@@ -388,10 +397,17 @@ export const getPerspectives = (country) => {
       tierLabel: TIERS[source.tier].label,
       tierShort: TIERS[source.tier].short,
       tierColor: TIERS[source.tier].color,
+      platform: rumbleKey ? 'rumble' : 'youtube',
       streamUrl,
       playable: Boolean(streamUrl),
-      linkUrl: source.websiteUrl || (key ? getChannelUrl(key) : null),
-      origin: verified ? verified.country : null,
+      linkUrl:
+        source.websiteUrl ||
+        (key ? getChannelUrl(key) : rumbleKey ? getRumbleWatchUrl(rumbleKey) : null),
+      origin: verified
+        ? verified.country
+        : rumbleKey && RUMBLE_CHANNELS[rumbleKey]
+        ? RUMBLE_CHANNELS[rumbleKey].country
+        : null,
       note: source.note || null,
     };
   });
@@ -404,7 +420,11 @@ export const getPerspectiveCountries = () =>
     .sort()
     .map((country) => {
       const entry = PERSPECTIVES[country];
-      const playable = entry.sources.filter((s) => s.channel && getStreamUrl(s.channel)).length;
+      const playable = entry.sources.filter(
+        (s) =>
+          (s.channel && getStreamUrl(s.channel)) ||
+          (s.rumble && getRumbleStreamUrl(s.rumble))
+      ).length;
       return {
         country,
         flag: entry.flag,

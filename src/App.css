@@ -3091,3 +3091,11 @@ input:focus-visible {
   background: #ff3b30;
   vertical-align: middle;
 }
+
+.compare-pane-platform {
+  font-size: 11px;
+  color: #85c742;
+  border: 1px solid #3d5c1f;
+  border-radius: 4px;
+  padding: 1px 6px;
+}

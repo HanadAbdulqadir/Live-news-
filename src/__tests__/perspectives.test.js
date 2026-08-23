@@ -11,6 +11,7 @@ import {
   TIER_ORDER,
 } from '../perspectives';
 import { VERIFIED_CHANNELS, getStreamUrl, isVerified } from '../verifiedStreams';
+import { RUMBLE_CHANNELS, getRumbleStreamUrl, getRumbleWatchUrl } from '../rumbleStreams';
 
 const EMBED = /^https:\/\/www\.youtube\.com\/embed\/live_stream\?channel=UC[\w-]{20,}$/;
 
@@ -121,5 +122,45 @@ describe('ComparePage', () => {
     const { container } = renderCompare('/compare/Iran');
     const results = await axe(container);
     expect(results).toHaveNoViolations();
+  });
+});
+
+describe('Rumble streams', () => {
+  test('every pinned stream names the broadcaster that owns it', () => {
+    Object.entries(RUMBLE_CHANNELS).forEach(([name, channel]) => {
+      expect(channel.embedId).toMatch(/^[\w.]+$/);
+      expect(channel.author).toBeTruthy();
+      expect(channel.country).toBeTruthy();
+      expect(typeof channel.live).toBe('boolean');
+      expect(name).toBeTruthy();
+    });
+  });
+
+  test('an off-air stream yields no player, only a watch link', () => {
+    Object.entries(RUMBLE_CHANNELS).forEach(([name, channel]) => {
+      if (channel.live) {
+        expect(getRumbleStreamUrl(name)).toBe(`https://rumble.com/embed/${channel.embedId}/`);
+      } else {
+        expect(getRumbleStreamUrl(name)).toBeNull();
+      }
+      expect(getRumbleWatchUrl(name)).toContain(channel.embedId);
+    });
+  });
+
+  test('unknown broadcasters get null, never a fallback stream', () => {
+    expect(getRumbleStreamUrl('Not A Broadcaster')).toBeNull();
+    expect(getRumbleWatchUrl('Not A Broadcaster')).toBeNull();
+  });
+
+  test('RT and Press TV are reachable through Rumble in the perspective sets', () => {
+    const rt = getPerspectives('Russia').sources.find((s) => s.name === 'RT');
+    const press = getPerspectives('Iran').sources.find((s) => s.name === 'Press TV');
+    [rt, press].forEach((source) => {
+      expect(source).toBeDefined();
+      expect(source.platform).toBe('rumble');
+      expect(source.linkUrl).toBeTruthy();
+      // Playable only when the pinned slot is actually broadcasting.
+      expect(source.playable).toBe(Boolean(getRumbleStreamUrl(source.name)));
+    });
   });
 });

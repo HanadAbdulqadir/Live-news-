@@ -59,7 +59,20 @@ at all.
 ```bash
 python scripts/resolve-directory.py data/broadcasters.psv data/resolved.psv
 python scripts/build-directory.py
+python scripts/check-rumble.py          # re-check the pinned Rumble streams
 ```
+
+To pin a new Rumble stream, resolve its embed ID first — the ID is **not** the
+URL slug, and using the slug returns 410:
+
+```bash
+curl "https://rumble.com/api/Media/oembed.json?url=<rumble video page url>"
+```
+
+Then add `country|broadcaster|embedId|expectedAuthor` to
+`data/rumble-streams.psv`. The checker drops any ID whose author stops matching,
+which is what stops a re-upload inheriting a broadcaster's slot: searching Rumble
+for "RT news" returns a video owned by an account called Kane2030, not by RT.
 
 To check or find a single channel by hand:
 
@@ -86,7 +99,8 @@ src/
 ├── globalNewsData.js     # GENERATED directory — do not edit by hand
 ├── countries.js          # Country lookups, derived from the directory
 ├── perspectives.js       # The four-tier comparison sets
-└── verifiedStreams.js    # Hand-verified channels behind the comparison sets
+├── verifiedStreams.js    # Hand-verified YouTube channels behind the comparison sets
+└── rumbleStreams.js      # GENERATED pinned Rumble streams (RT, Press TV)
 ```
 
 Two datasets, deliberately:
@@ -118,8 +132,16 @@ npm run deploy     # gh-pages
 ## Known limits
 
 - **Live status goes stale.** It reflects the last resolver run, not this moment.
-- **RT and Press TV have no YouTube presence.** RT's official feed is on Rumble,
-  which exposes no stable embed ID, so both are link-only.
+- **Rumble streams are pinned, not discovered.** Rumble has no channel-level live
+  URL, its channel pages render client-side, and it publishes no feed, so the
+  current live video cannot be found automatically. Each stream is pinned to one
+  embed ID in `data/rumble-streams.psv` and re-checked by
+  `scripts/check-rumble.py`. Viable because the slots are long-lived — RT's has
+  carried the same ID since March 2022.
+- **Rumble sits behind Cloudflare.** Repeated automated checks get challenged,
+  so `check-rumble.py` may report `UNKNOWN`. It never deletes on a failed check:
+  it keeps what the last good run knew and clears the live flag. Browsers loading
+  the embed are unaffected.
 - **100 broadcasters were dropped** from the old lists for having neither a
   resolvable channel nor a website. `scripts/build-directory.py` prints them;
   adding a URL to `data/broadcaster-websites.psv` brings one back.
