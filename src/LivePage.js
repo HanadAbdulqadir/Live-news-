@@ -1,6 +1,16 @@
 import React from 'react';
 
 const LivePage = ({ filteredCategories, setSelectedSource }) => {
+  // Only broadcasters with a verified live feed get a player. Everything else is
+  // listed elsewhere in the app as a link rather than a dead iframe.
+  const liveSources = filteredCategories
+    .flatMap(category => category.sources)
+    .filter(source => source.streamUrl);
+
+  // The directory records country and continent per broadcaster, not language,
+  // so the stats state what the data actually holds.
+  const continentCount = new Set(liveSources.map(source => source.continent)).size;
+
   return (
     <div className="live-page">
       {/* Hero Section for Live */}
@@ -17,7 +27,7 @@ const LivePage = ({ filteredCategories, setSelectedSource }) => {
       <section className="content-row">
         <h2 className="row-title">All Live Channels</h2>
         <div className="streams-grid">
-          {filteredCategories.flatMap(category => category.sources).map(source => (
+          {liveSources.map(source => (
             <div
               key={source.id}
               className="stream"
@@ -47,16 +57,16 @@ const LivePage = ({ filteredCategories, setSelectedSource }) => {
         <h2 className="row-title">📊 Live Streaming Statistics</h2>
         <div className="stats-grid">
           <div className="stat-card">
-            <h3>20+</h3>
-            <p>Active Live Streams</p>
+            <h3>{liveSources.length}</h3>
+            <p>Verified Live Streams</p>
           </div>
           <div className="stat-card">
-            <h3>15+</h3>
-            <p>Languages Supported</p>
+            <h3>{continentCount}</h3>
+            <p>Continents</p>
           </div>
           <div className="stat-card">
-            <h3>0s</h3>
-            <p>Delay (Near Real-time)</p>
+            <h3>{new Set(liveSources.map(s => s.country)).size}</h3>
+            <p>Countries</p>
           </div>
           <div className="stat-card">
             <h3>HD</h3>
@@ -65,35 +75,21 @@ const LivePage = ({ filteredCategories, setSelectedSource }) => {
         </div>
       </section>
 
-      {/* Popular Channels */}
+      {/* Channels currently streaming */}
       <section className="content-row">
-        <h2 className="row-title">🔥 Most Popular Channels</h2>
+        <h2 className="row-title">🔴 Currently Streaming</h2>
         <div className="popular-channels">
-          <div className="popular-channel">
-            <span className="channel-rank">1</span>
-            <span className="channel-name">CNN</span>
-            <span className="channel-viewers">📈 25K watching</span>
-          </div>
-          <div className="popular-channel">
-            <span className="channel-rank">2</span>
-            <span className="channel-name">BBC News</span>
-            <span className="channel-viewers">📈 18K watching</span>
-          </div>
-          <div className="popular-channel">
-            <span className="channel-rank">3</span>
-            <span className="channel-name">Al Jazeera</span>
-            <span className="channel-viewers">📈 15K watching</span>
-          </div>
-          <div className="popular-channel">
-            <span className="channel-rank">4</span>
-            <span className="channel-name">France 24</span>
-            <span className="channel-viewers">📈 12K watching</span>
-          </div>
-          <div className="popular-channel">
-            <span className="channel-rank">5</span>
-            <span className="channel-name">DW News</span>
-            <span className="channel-viewers">📈 10K watching</span>
-          </div>
+          {liveSources.slice(0, 8).map((source, i) => (
+            <div
+              className="popular-channel"
+              key={source.id}
+              onClick={() => setSelectedSource(source)}
+            >
+              <span className="channel-rank">{i + 1}</span>
+              <span className="channel-name">{source.name}</span>
+              <span className="channel-viewers">{source.flag} {source.country}</span>
+            </div>
+          ))}
         </div>
       </section>
 

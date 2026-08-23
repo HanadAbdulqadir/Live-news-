@@ -1,33 +1,30 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import App from '../App';
 
 test('renders Global News Stream header', () => {
   render(<App />);
-  const headerElement = screen.getByText(/Global News Stream/i);
-  expect(headerElement).toBeInTheDocument();
+  expect(screen.getByText(/Global News Stream/i)).toBeInTheDocument();
 });
 
 test('renders navigation links', () => {
   render(<App />);
-  const homeLink = screen.getByText(/Home/i);
-  const liveLink = screen.getByText(/Live/i);
-  const newsLink = screen.getByText(/News/i);
-  const countriesLink = screen.getByText(/Countries/i);
-  
-  expect(homeLink).toBeInTheDocument();
-  expect(liveLink).toBeInTheDocument();
-  expect(newsLink).toBeInTheDocument();
-  expect(countriesLink).toBeInTheDocument();
+  // Scope to the nav: "Live" and "News" also appear in page copy below it.
+  const nav = within(screen.getByRole('navigation'));
+  ['Home', 'Countries', 'Live', 'Compare', 'News'].forEach((label) => {
+    expect(nav.getByRole('link', { name: new RegExp(label, 'i') })).toBeInTheDocument();
+  });
 });
 
 test('renders search input', () => {
   render(<App />);
-  const searchInput = screen.getByPlaceholderText(/Search channels/i);
-  expect(searchInput).toBeInTheDocument();
+  expect(screen.getByPlaceholderText(/Search countries, channels/i)).toBeInTheDocument();
 });
 
-test('renders refresh button', () => {
+test('states real directory totals rather than round numbers', () => {
   render(<App />);
-  const refreshButton = screen.getByText(/Refresh/i);
-  expect(refreshButton).toBeInTheDocument();
+  expect(screen.getByText('Countries Covered')).toBeInTheDocument();
+  expect(screen.getByText('Confirmed Channels')).toBeInTheDocument();
+  // The old page claimed "50+" and "200+" regardless of what was in the data.
+  expect(screen.queryByText('50+')).not.toBeInTheDocument();
+  expect(screen.queryByText('200+')).not.toBeInTheDocument();
 });

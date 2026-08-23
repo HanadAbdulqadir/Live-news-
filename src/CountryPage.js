@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getNewsSourceData } from './countries';
+import { hasPerspectives } from './perspectives';
+import { VERIFIED_AT } from './verifiedStreams';
 
 const CountryPage = () => {
   const { countryName } = useParams();
@@ -12,123 +14,7 @@ const CountryPage = () => {
     setNewsSources(sources);
   }, [countryName]);
 
-  // Enhanced stream URLs with actual working YouTube live streams and news channels
-  const streamUrls = {
-    // Major international news
-    'CNN': 'https://www.youtube.com/embed/live_stream?channel=UCupvZG-5ko_eiXAupbDfxWw',
-    'Fox News': 'https://www.youtube.com/embed/live_stream?channel=UCXIJgqnII2ZOINSWNOGFThA',
-    'BBC News': 'https://www.youtube.com/embed/live_stream?channel=UC16niRr50-MSBwiO3YDb3RA',
-    'France 24': 'https://www.youtube.com/embed/live_stream?channel=UCQfwfsi5VrQ8yKZ-UWmAEFg',
-    'Al Jazeera': 'https://www.youtube.com/embed/live_stream?channel=UCt3g2lIDcU5Y5p2-m1w1vjQ',
-    'CGTN': 'https://www.youtube.com/embed/live_stream?channel=UCgr2ZlgS4p_8p2wWgKbqoJQ',
-    
-    // Regional news
-    'NDTV India': 'https://www.youtube.com/embed/live_stream?channel=UC9CYT9gSNLevX5ey2_6CK0Q',
-    'NHK World': 'https://www.youtube.com/embed/live_stream?channel=UCs5J4Qo4ZQ5ZQ5ZQ5ZQ5ZQ',
-    'ABC News Australia': 'https://www.youtube.com/embed/live_stream?channel=UCs5J4Qo4ZQ5ZQ5ZQ5ZQ5ZQ',
-    'TVNZ': 'https://www.youtube.com/embed/live_stream?channel=UCs5J4Qo4ZQ5ZQ5ZQ5ZQ5ZQ',
-    
-    // Additional major networks
-    'MSNBC': 'https://www.youtube.com/embed/live_stream?channel=UCaXkIU1QidjPwiAYu6GcHjg',
-    'ABC News': 'https://www.youtube.com/embed/live_stream?channel=UCBi2mrWuNuyYy4gbM6fU18Q',
-    'CBS News': 'https://www.youtube.com/embed/live_stream?channel=UC8p1vwvWtl6T73JiExfWs1g',
-    'NBC News': 'https://www.youtube.com/embed/live_stream?channel=UCeY0bbntWzzVIaj2z3QigXg',
-    'Bloomberg': 'https://www.youtube.com/embed/live_stream?channel=UCIALMKvObZNtJ6AmdCLP7Lg',
-    'CNBC': 'https://www.youtube.com/embed/live_stream?channel=UCvJXcNcwCQc5qTZ0Q8FzD2A',
-    
-    // European news
-    'DW News': 'https://www.youtube.com/embed/live_stream?channel=UCknLrEdhRCp1aegoMqRaCZg',
-    'Sky News': 'https://www.youtube.com/embed/live_stream?channel=UCsy-SVa2BXD8qLIb1XwL78w',
-    'ITV News': 'https://www.youtube.com/embed/live_stream?channel=UCs5J4Qo4ZQ5ZQ5ZQ5ZQ5ZQ',
-    
-    // Asian news
-    'Times Now': 'https://www.youtube.com/embed/live_stream?channel=UC6R3nor4Z-5n7O3QwCk2zew',
-    'Republic TV': 'https://www.youtube.com/embed/live_stream?channel=UCwO-Y7Yx5RdzXZbWMnDdcLw',
-    'India Today': 'https://www.youtube.com/embed/live_stream?channel=UCYPvAwZP8pZhSMW8qs7cVCw',
-    
-    // Country-specific news channels - comprehensive dummy links
-    // United States
-    'CBC News': 'https://www.youtube.com/embed/live_stream?channel=UCupvZG-5ko_eiXAupbDfxWw',
-    'CTV News': 'https://www.youtube.com/embed/live_stream?channel=UCXIJgqnII2ZOINSWNOGFThA',
-    'Global News': 'https://www.youtube.com/embed/live_stream?channel=UC16niRr50-MSBwiO3YDb3RA',
-    
-    // Canada
-    'CBC News': 'https://www.youtube.com/embed/live_stream?channel=UCQfwfsi5VrQ8yKZ-UWmAEFg',
-    'CTV News': 'https://www.youtube.com/embed/live_stream?channel=UCt3g2lIDcU5Y5p2-m1w1vjQ',
-    'Global News': 'https://www.youtube.com/embed/live_stream?channel=UCgr2ZlgS4p_8p2wWgKbqoJQ',
-    
-    // Mexico
-    'Televisa': 'https://www.youtube.com/embed/live_stream?channel=UC9CYT9gSNLevX5ey2_6CK0Q',
-    'TV Azteca': 'https://www.youtube.com/embed/live_stream?channel=UCs5J4Qo4ZQ5ZQ5ZQ5ZQ5ZQ',
-    'Milenio': 'https://www.youtube.com/embed/live_stream?channel=UCs5J4Qo4ZQ5ZQ5ZQ5ZQ5ZQ',
-    
-    // United Kingdom
-    'BBC News': 'https://www.youtube.com/embed/live_stream?channel=UCaXkIU1QidjPwiAYu6GcHjg',
-    'Sky News': 'https://www.youtube.com/embed/live_stream?channel=UCBi2mrWuNuyYy4gbM6fU18Q',
-    'ITV News': 'https://www.youtube.com/embed/live_stream?channel=UC8p1vwvWtl6T73JiExfWs1g',
-    
-    // France
-    'France 24': 'https://www.youtube.com/embed/live_stream?channel=UCeY0bbntWzzVIaj2z3QigXg',
-    'BFM TV': 'https://www.youtube.com/embed/live_stream?channel=UCIALMKvObZNtJ6AmdCLP7Lg',
-    'TF1': 'https://www.youtube.com/embed/live_stream?channel=UCvJXcNcwCQc5qTZ0Q8FzD2A',
-    
-    // Germany
-    'DW News': 'https://www.youtube.com/embed/live_stream?channel=UCknLrEdhRCp1aegoMqRaCZg',
-    'ARD': 'https://www.youtube.com/embed/live_stream?channel=UCsy-SVa2BXD8qLIb1XwL78w',
-    'ZDF': 'https://www.youtube.com/embed/live_stream?channel=UCs5J4Qo4ZQ5ZQ5ZQ5ZQ5ZQ',
-    
-    // Australia
-    'ABC News Australia': 'https://www.youtube.com/embed/live_stream?channel=UC6R3nor4Z-5n7O3QwCk2zew',
-    'Sky News Australia': 'https://www.youtube.com/embed/live_stream?channel=UCwO-Y7Yx5RdzXZbWMnDdcLw',
-    '7 News': 'https://www.youtube.com/embed/live_stream?channel=UCYPvAwZP8pZhSMW8qs7cVCw',
-    
-    // India
-    'NDTV India': 'https://www.youtube.com/embed/live_stream?channel=UCupvZG-5ko_eiXAupbDfxWw',
-    'Republic TV': 'https://www.youtube.com/embed/live_stream?channel=UCXIJgqnII2ZOINSWNOGFThA',
-    'Times Now': 'https://www.youtube.com/embed/live_stream?channel=UC16niRr50-MSBwiO3YDb3RA',
-    
-    // Japan
-    'NHK World': 'https://www.youtube.com/embed/live_stream?channel=UCQfwfsi5VrQ8yKZ-UWmAEFg',
-    'Fuji TV': 'https://www.youtube.com/embed/live_stream?channel=UCt3g2lIDcU5Y5p2-m1w1vjQ',
-    'TBS': 'https://www.youtube.com/embed/live_stream?channel=UCgr2ZlgS4p_8p2wWgKbqoJQ',
-    
-    // China
-    'CGTN': 'https://www.youtube.com/embed/live_stream?channel=UC9CYT9gSNLevX5ey2_6CK0Q',
-    'CCTV': 'https://www.youtube.com/embed/live_stream?channel=UCs5J4Qo4ZQ5ZQ5ZQ5ZQ5ZQ',
-    'Phoenix TV': 'https://www.youtube.com/embed/live_stream?channel=UCs5J4Qo4ZQ5ZQ5ZQ5ZQ5ZQ',
-    
-    // Brazil
-    'Globo News': 'https://www.youtube.com/embed/live_stream?channel=UCaXkIU1QidjPwiAYu6GcHjg',
-    'Record News': 'https://www.youtube.com/embed/live_stream?channel=UCBi2mrWuNuyYy4gbM6fU18Q',
-    'Band News': 'https://www.youtube.com/embed/live_stream?channel=UC8p1vwvWtl6T73JiExfWs1g',
-    
-    // Russia
-    'Russia Today': 'https://www.youtube.com/embed/live_stream?channel=UCeY0bbntWzzVIaj2z3QigXg',
-    'Rossiya 24': 'https://www.youtube.com/embed/live_stream?channel=UCIALMKvObZNtJ6AmdCLP7Lg',
-    'NTV': 'https://www.youtube.com/embed/live_stream?channel=UCvJXcNcwCQc5qTZ0Q8FzD2A',
-    
-    // South Africa
-    'SABC News': 'https://www.youtube.com/embed/live_stream?channel=UCknLrEdhRCp1aegoMqRaCZg',
-    'eNCA': 'https://www.youtube.com/embed/live_stream?channel=UCsy-SVa2BXD8qLIb1XwL78w',
-    'Newzroom Afrika': 'https://www.youtube.com/embed/live_stream?channel=UCs5J4Qo4ZQ5ZQ5ZQ5ZQ5ZQ',
-    
-    // Nigeria
-    'NTA': 'https://www.youtube.com/embed/live_stream?channel=UC6R3nor4Z-5n7O3QwCk2zew',
-    'Channels TV': 'https://www.youtube.com/embed/live_stream?channel=UCwO-Y7Yx5RdzXZbWMnDdcLw',
-    'TVC News': 'https://www.youtube.com/embed/live_stream?channel=UCYPvAwZP8pZhSMW8qs7cVCw',
-    
-    // Default fallback for all other channels
-    'default': 'https://www.youtube.com/embed/live_stream?channel=UCupvZG-5ko_eiXAupbDfxWw'
-  };
-
-  // Get stream URL with better fallback handling
-  const getStreamUrl = (source) => {
-    const url = streamUrls[source];
-    if (url) return url;
-    
-    // For sources without specific URLs, use the default fallback
-    return streamUrls.default;
-  };
+  const liveSources = newsSources.filter(source => source.streamUrl);
 
   return (
     <div className="country-page">
@@ -138,33 +24,61 @@ const CountryPage = () => {
           ← Back to Countries
         </Link>
         <h1 className="page-title">{countryName} News Channels</h1>
+        <p className="page-subtitle">
+          {liveSources.length} of {newsSources.length} channels have a verified live feed
+        </p>
+        {hasPerspectives(countryName) && (
+          <Link to={`/compare/${encodeURIComponent(countryName)}`} className="compare-cta">
+            ⚖️ Compare how {countryName} is covered from four directions
+          </Link>
+        )}
       </div>
 
       {/* News sources grid */}
       <div className="sources-grid">
-        {newsSources.map((source, index) => (
+        {newsSources.map((source) => (
           <div
             key={source.id}
-            className="source-card"
-            onClick={() => setSelectedSource(source)}
+            className={`source-card${source.streamUrl ? '' : ' source-card-no-stream'}`}
+            onClick={() => source.streamUrl && setSelectedSource(source)}
             style={{ borderLeft: `4px solid ${source.color}` }}
           >
             <div className="source-thumbnail" style={{ backgroundColor: source.color }}>
               <div className="source-placeholder">
                 {source.name.charAt(0)}
               </div>
+              {source.streamUrl && <span className="live-badge">LIVE</span>}
             </div>
             <div className="source-info">
               <h3 className="source-name">{source.name}</h3>
               <p className="source-country">{source.country}</p>
               <p className="source-description">{source.description}</p>
+              {!source.streamUrl && (
+                <p className="source-no-stream">
+                  {source.channelUrl ? (
+                    <>
+                      No live feed right now —{' '}
+                      <a
+                        href={source.channelUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={e => e.stopPropagation()}
+                      >
+                        open channel
+                      </a>
+                    </>
+                  ) : (
+                    'No verified live feed available'
+                  )}
+                </p>
+              )}
             </div>
           </div>
         ))}
       </div>
 
       {/* Modal for watching news */}
-      {selectedSource && (
+      {selectedSource && selectedSource.streamUrl && (
         <div className="modal" onClick={() => setSelectedSource(null)}>
           <div className="modal-content" onClick={e => e.stopPropagation()}>
             <div className="modal-header">
@@ -183,7 +97,8 @@ const CountryPage = () => {
               <div className="stream-info">
                 <p>Watching {selectedSource.name} from {countryName}</p>
                 <p className="stream-note">
-                  Note: This is a demo. In a production app, these would be actual news stream URLs.
+                  Official channel feed, verified {VERIFIED_AT}. Broadcasters go on and
+                  off air, so a channel may show its most recent stream instead.
                 </p>
               </div>
             </div>

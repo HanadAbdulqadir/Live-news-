@@ -1,112 +1,143 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ALL_COUNTRIES, getNewsSourcesForCountry, getNewsSourceData } from './countries';
+import { getNewsSourceData } from './countries';
+import { GLOBAL_NEWS_SOURCES, getSourcesByContinent, getDirectoryStats } from './globalNewsData';
+import { hasPerspectives } from './perspectives';
 
-const CountriesList = ({ onCountrySelect, onSourceSelect }) => {
+const CONTINENT_ORDER = [
+  'Africa',
+  'Asia',
+  'Europe',
+  'North America',
+  'South America',
+  'Oceania',
+];
+
+const CountriesList = ({ onCountrySelect, onSourceSelect, searchQuery = '', selectedContinent = 'all' }) => {
   const navigate = useNavigate();
-  const [hoveredSource, setHoveredSource] = useState(null);
+  const stats = getDirectoryStats();
+  const term = searchQuery.trim().toLowerCase();
 
-  const continents = {
-    'North America': ALL_COUNTRIES.slice(0, 3),
-    'Central America': ALL_COUNTRIES.slice(3, 10),
-    'Caribbean': ALL_COUNTRIES.slice(10, 23),
-    'South America': ALL_COUNTRIES.slice(23, 35),
-    'Europe': ALL_COUNTRIES.slice(35, 85),
-    'Africa': ALL_COUNTRIES.slice(85, 140),
-    'Asia': ALL_COUNTRIES.slice(140, 182),
-    'Oceania': ALL_COUNTRIES.slice(182)
-  };
+  // The page above owns the search box and the continent select; honour both.
+  const continents = {};
+  Object.entries(getSourcesByContinent()).forEach(([continent, entries]) => {
+    if (selectedContinent !== 'all' && continent !== selectedContinent) return;
+    const matching = term
+      ? entries.filter(
+          (entry) =>
+            entry.name.toLowerCase().includes(term) ||
+            entry.sources.some((source) => source.name.toLowerCase().includes(term))
+        )
+      : entries;
+    if (matching.length > 0) continents[continent] = matching;
+  });
+
+  const ordered = [
+    ...CONTINENT_ORDER.filter((c) => continents[c]),
+    ...Object.keys(continents).filter((c) => !CONTINENT_ORDER.includes(c)),
+  ];
 
   return (
     <div className="countries-section">
       <h2 className="countries-title">Countries of the World</h2>
       <p className="countries-subtitle">
-        Explore news sources from 195 countries around the globe
+        {stats.sources} broadcasters across {stats.countries} countries · {stats.verified} with a
+        confirmed channel · {stats.live} live
       </p>
-      
-      {Object.entries(continents).map(([continent, countries]) => (
+
+      {ordered.map((continent) => (
         <div key={continent} className="continent-group">
-          <h3 className="continent-title">{continent}</h3>
+          <h3 className="continent-title">
+            {continent} <span className="continent-count">{continents[continent].length}</span>
+          </h3>
           <div className="countries-grid">
-            {countries.map(country => (
-              <Link
-                key={country}
-                to={`/country/${encodeURIComponent(country)}`}
-                className="country-card-link"
-              >
-                <div
-                  className="country-card"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    onCountrySelect(country);
-                  }}
+            {continents[continent].map((entry) => {
+              const sources = getNewsSourceData(entry.name);
+              const liveCount = sources.filter((s) => s.streamUrl).length;
+              return (
+                <Link
+                  key={entry.id}
+                  to={`/country/${encodeURIComponent(entry.name)}`}
+                  className="country-card-link"
                 >
-                  <h4 className="country-name">
-                    <span className="country-flag">🌍</span>
-                    {country}
-                  </h4>
-                  <div className="country-sources">
-                    {getNewsSourcesForCountry(country).slice(0, 3).map((source, index) => {
-                      const sourceData = getNewsSourceData(country).find(s => s.name === source);
-                      return (
-                        <span 
-                          key={index} 
-                          className="source-tag"
-                          style={{ 
-                            backgroundColor: sourceData?.color || '#404040',
-                            borderColor: sourceData?.color || '#555'
-                          }}
+                  <div
+                    className="country-card"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onCountrySelect(entry.name);
+                      navigate(`/country/${encodeURIComponent(entry.name)}`);
+                    }}
+                  >
+                    <h4 className="country-name">
+                      <span className="country-flag">{entry.flag}</span>
+                      {entry.name}
+                    </h4>
+                    <div className="country-sources">
+                      {sources.slice(0, 3).map((source) => (
+                        <span
+                          key={source.id}
+                          className={`source-tag${source.streamUrl ? ' source-tag-live' : ''}`}
+                          style={{ backgroundColor: source.color, borderColor: source.color }}
                           onClick={(e) => {
                             e.stopPropagation();
                             e.preventDefault();
-                            if (onSourceSelect && sourceData) {
-                              onSourceSelect(sourceData, country);
-                              navigate(`/country/${encodeURIComponent(country)}`);
-                            }
+                            if (onSourceSelect) onSourceSelect(source, entry.name);
+                            navigate(`/country/${encodeURIComponent(entry.name)}`);
                           }}
-                          onMouseEnter={() => setHoveredSource(`${country}-${source}`)}
-                          onMouseLeave={() => setHoveredSource(null)}
-                          title={`Watch ${source} from ${country}`}
+                          title={
+                            source.streamUrl
+                              ? `Watch ${source.name} live`
+                              : `${source.name} — no live feed`
+                          }
                         >
-                          {source}
+                          {source.name}
                         </span>
-                      );
-                    })}
-                    {getNewsSourcesForCountry(country).length > 3 && (
-                      <span 
-                        className="source-tag"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          e.preventDefault();
-                          navigate(`/country/${encodeURIComponent(country)}`);
-                        }}
-                        title={`View all ${getNewsSourcesForCountry(country).length} channels from ${country}`}
-                      >
-                        +{getNewsSourcesForCountry(country).length - 3} more
-                      </span>
-                    )}
-                  </div>
-                  <div className="country-stats">
-                    <span className="stat-item">
-                      <span className="stat-icon">📺</span>
-                      {getNewsSourcesForCountry(country).length} channels
-                    </span>
-                    <span className="stat-item">
-                      <span className="stat-icon">⭐</span>
-                      {Math.floor(Math.random() * 5) + 1}/5
-                    </span>
-                  </div>
-                  {hoveredSource && hoveredSource.startsWith(`${country}-`) && (
-                    <div className="source-tooltip">
-                      Click to watch {hoveredSource.split('-')[1]} from {country}
+                      ))}
+                      {sources.length > 3 && (
+                        <span
+                          className="source-tag"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            e.preventDefault();
+                            navigate(`/country/${encodeURIComponent(entry.name)}`);
+                          }}
+                          title={`View all ${sources.length} broadcasters from ${entry.name}`}
+                        >
+                          +{sources.length - 3} more
+                        </span>
+                      )}
                     </div>
-                  )}
-                </div>
-              </Link>
-            ))}
+                    <div className="country-stats">
+                      <span className="stat-item">
+                        <span className="stat-icon">📺</span>
+                        {sources.length} broadcaster{sources.length === 1 ? '' : 's'}
+                      </span>
+                      <span className="stat-item">
+                        <span className="stat-icon">{liveCount > 0 ? '🔴' : '🔗'}</span>
+                        {liveCount > 0 ? `${liveCount} live` : 'links only'}
+                      </span>
+                      {hasPerspectives(entry.name) && (
+                        <span className="stat-item" title="Multi-perspective comparison available">
+                          <span className="stat-icon">⚖️</span>
+                          compare
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </div>
       ))}
+
+      {ordered.length === 0 && (
+        <p className="compare-empty">
+          {GLOBAL_NEWS_SOURCES.length === 0
+            ? 'The directory is empty — run the build script.'
+            : `No country matches "${searchQuery}".`}
+        </p>
+      )}
     </div>
   );
 };

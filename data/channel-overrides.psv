@@ -1,0 +1,71 @@
+# country|broadcaster|category|channelId|live
+# Hand-verified channels merged into the generated directory. These cover the
+# cases automated name matching cannot reach: rebrands (MSNBC -> MS NOW),
+# English services under a different name, and outlets whose channel title is
+# in another script. Verified with scripts/verify-channels.sh.
+United States|CNN|unknown|UCupvZG-5ko_eiXAupbDfxWw|1
+United States|Fox News|unknown|UCXIJgqnII2ZOINSWNOGFThA|1
+United States|MS NOW|unknown|UCaXkIU1QidjPwiAYu6GcHjg|0
+United States|ABC News|unknown|UCBi2mrWuNuyYy4gbM6fU18Q|1
+United States|CBS News|unknown|UC8p1vwvWtl6T73JiExfWs1g|0
+United States|NBC News|unknown|UCeY0bbntWzzVIaj2z3QigXg|1
+United States|Bloomberg Television|unknown|UCIALMKvObZNtJ6AmdCLP7Lg|1
+United States|CNBC|unknown|UCvJJ_dzjViJCoLf5uKUTwoA|1
+United Kingdom|BBC News|unknown|UC16niRr50-MSBwiO3YDb3RA|0
+United Kingdom|Sky News|unknown|UCoMdktPbSTixAyNGwb-UYkQ|1
+United Kingdom|ITV News|unknown|UCFQgi22Ht00CpaOQLtvZx2A|0
+France|France 24 English|unknown|UCQfwfsi5VrQ8yKZ-UWmAEFg|1
+France|BFMTV|unknown|UCXwDLMDV86ldKoFVc_g8P0g|1
+France|TF1 Info|unknown|UCsrPUA0ZSDCNZC6wyRlR7ZA|0
+Germany|DW News|unknown|UCknLrEdhRCp1aegoMqRaCZg|1
+Germany|tagesschau|unknown|UC5NOEUbkLheQcaaRldYW5GA|0
+Germany|ZDFheute|unknown|UCeqKIgPQfNInOswGRWt48kQ|0
+Qatar|Al Jazeera English|unknown|UCNye-wNBqNL5ZzHSJj3l8Bg|1
+Turkey|TRT World|unknown|UC7fWeaHhqgM4Ry-RMpM2YYw|1
+Saudi Arabia|Al Arabiya|unknown|UCahpxixMCwoANAftn6IxkTg|1
+China|CGTN|unknown|UCgrNz-aDmcr2uuto8_DL2jg|1
+China|CCTV|unknown|UCcLK3j-XWdGBnt5bR9NJHaQ|0
+Japan|NHK World-Japan|unknown|UCSPEjw8F2nQDtmUKPFNF7_A|1
+Japan|FNN Prime Online|unknown|UCoQBJMzcwmXrRSHBFAlTsIw|1
+Japan|TBS NEWS DIG|unknown|UC6AG81pAkf6Lbi_1VC5NmPA|1
+South Korea|Arirang News|unknown|UCzznO4xSV8BKnUBPyswtCUw|0
+Singapore|CNA|unknown|UC83jt4dlz1Gjl58fzQrrKZg|1
+India|NDTV|unknown|UCZFMm1mMw0F81Z37aaEzTUA|1
+India|India Today|unknown|UCYPvAwZP8pZhSMW8qs7cVCw|1
+India|Times Now|unknown|UC6RJ7-PaXg6TIH2BzZfTV7w|1
+India|Republic World|unknown|UCwqusr8YDwM-3mEYTDeJHzw|1
+Canada|CBC News|unknown|UCuFFtHWoLl5fauMMD5Ww2jA|1
+Canada|CTV News|unknown|UCi7Zk9baY1tvdlgxIML8MXg|0
+Canada|Global News|unknown|UChLtXXpo4Ge1ReTEboVvTDg|0
+Australia|ABC News Australia|unknown|UCVgO39Bk5sMo66-6o6Spn6Q|1
+Australia|7NEWS Australia|unknown|UC5T7D-Dh1eDGtsAFCuwv_Sw|0
+New Zealand|1News|unknown|UCxPAYgO8OpFev3PUTKbsxNw|0
+South Africa|SABC News|unknown|UC8yH-uI81UUtEMDsowQyx1g|0
+South Africa|eNCA|unknown|UCI3RT5PGmdi1KVp9FG_CneA|0
+South Africa|Newzroom Afrika|unknown|UCQMML3hAsx-Mz9j9ZN0tThQ|0
+Nigeria|Channels Television|unknown|UCEXGDNclvmg6RW0vipJYsTQ|1
+Nigeria|TVC News Nigeria|unknown|UCgp4A6I8LCWrhUzn-5SbKvA|1
+Nigeria|NTA Network|unknown|UCLLWAXn5F415g2kNAcE_T1g|0
+Brazil|GloboNews|unknown|UCp6RRaz93Pt2xYZoEye_rLA|1
+Brazil|Record News|unknown|UCuiLR4p6wQ3xLEm15pEn1Xw|1
+Brazil|Band Jornalismo|unknown|UCoa-D_VfMkFrCYodrOC9-mA|0
+Mexico|Milenio|unknown|UCFxHplbcoJK9m70c4VyTIxg|1
+Mexico|N+|unknown|UCUsm-fannqOY02PNN67C0KA|1
+Mexico|Azteca Noticias|unknown|UCUP6qv-_EIL0hwTsJaKYnvw|1
+Argentina|TN - Todo Noticias|unknown|UCj6PcyLvpnIRT_2W_mwa9Aw|1
+Argentina|C5N|unknown|UCFgk2Q2mVO1BklRQhSv6p0w|1
+Bangladesh|Somoy TV|unknown|UCxHoBXkY88Tb8z1Ssj6CWsQ|1
+Brazil|Jovem Pan News|unknown|UCP391YRAjSOdM_bwievgaZA|1
+Azerbaijan|Ictimai TV|unknown|UCDVpJfSc-RCGSCfGE2MFGAg|0
+Israel|i24NEWS English|unknown|UCvHDpsWKADrDia0c99X37vg|0
+Iran|Iran International|unknown|UCWUREZPvqB6L1MuDV5ngiiw|0
+United States|VOA News|unknown|UCVSNOxehfALut52NbkfRBaA|0
+Qatar|Al Jazeera Arabic|unknown|UCfiwzLy-8yKzIbsmZTzxDgw|1
+Lebanon|Al Mayadeen|unknown|UCZCFHCU-2eGF7V5ciMkoPHw|1
+Lebanon|Al Mayadeen English|unknown|UCzW1oJMWo5BpHys5QGbpJrA|0
+United Arab Emirates|Sky News Arabia|unknown|UCIJXOvggjKtCagMfxvcCzAA|1
+Poland|TVP World|unknown|UCBjUPsHj7bXt24SUWNoZ0zA|1
+Venezuela|teleSUR English|unknown|UCmuTmpLY35O3csvhyA6vrkg|1
+India|WION|unknown|UC_gUM8rL-Lrg6O3adPW9K1g|1
+Brazil|CNN Brasil|unknown|UCvdwhh_fDyWccR42-rReZLw|1
+United Kingdom|BBC Persian|unknown|UCHZk9MrT3DGWmVqdsj5y0EA|1

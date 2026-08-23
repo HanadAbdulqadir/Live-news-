@@ -1,22 +1,22 @@
 import React, { useState, useMemo } from 'react';
 import CountriesList from './CountriesList';
+import { getSourcesByContinent, getDirectoryStats } from './globalNewsData';
 
 const CountriesPage = ({ onCountrySelect, onSourceSelect, searchQuery, setSearchQuery }) => {
   const [localSearchQuery, setLocalSearchQuery] = useState('');
   const [selectedContinent, setSelectedContinent] = useState('all');
   
-  // Continent filter options
-  const continents = [
-    { value: 'all', label: 'All Continents' },
-    { value: 'North America', label: 'North America' },
-    { value: 'Central America', label: 'Central America' },
-    { value: 'Caribbean', label: 'Caribbean' },
-    { value: 'South America', label: 'South America' },
-    { value: 'Europe', label: 'Europe' },
-    { value: 'Africa', label: 'Africa' },
-    { value: 'Asia', label: 'Asia' },
-    { value: 'Oceania', label: 'Oceania' }
-  ];
+  // Continent options come from the directory, so the filter can never offer a
+  // region that has no countries behind it.
+  const continents = useMemo(
+    () => [
+      { value: 'all', label: 'All Continents' },
+      ...Object.keys(getSourcesByContinent())
+        .sort()
+        .map((name) => ({ value: name, label: name })),
+    ],
+    []
+  );
 
   // Memoized search handler
   const handleSearch = useMemo(() => (query) => {
@@ -34,15 +34,8 @@ const CountriesPage = ({ onCountrySelect, onSourceSelect, searchQuery, setSearch
     }
   };
 
-  // Filter countries based on search and continent
-  const filteredCountries = useMemo(() => {
-    // This would be implemented with actual country data filtering
-    // For now, we'll pass the filters to CountriesList
-    return {
-      searchQuery: localSearchQuery,
-      continent: selectedContinent
-    };
-  }, [localSearchQuery, selectedContinent]);
+  const stats = getDirectoryStats();
+
   return (
     <div className="countries-page">
       {/* Hero Section for Countries */}
@@ -100,8 +93,9 @@ const CountriesPage = ({ onCountrySelect, onSourceSelect, searchQuery, setSearch
         <h2 className="row-title">Global Coverage</h2>
         <div className="global-coverage">
           <p>
-            Our platform provides comprehensive news coverage from over 50 countries worldwide, 
-            ensuring you get diverse perspectives on global events from trusted international sources.
+            {stats.sources} broadcasters across {stats.countries} countries. {stats.verified} are
+            matched to a confirmed official channel and {stats.live} were streaming live when the
+            directory was last built; the rest link straight to the broadcaster.
           </p>
         </div>
       </section>
