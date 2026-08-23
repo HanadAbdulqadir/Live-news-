@@ -1,98 +1,102 @@
 import React, { useState, useEffect } from 'react';
 
+// PLACEHOLDER CONTENT — these articles are written for layout, not reported.
+// They are attributed to real outlets and must not ship as if they were real
+// reporting. Replace with a live feed before this page goes public.
+const NEWS_ARTICLES = [
+  {
+    id: 1,
+    title: "Global Climate Summit Reaches Historic Agreement on Carbon Emissions",
+    description: "World leaders have agreed to ambitious new targets for reducing carbon emissions by 2030, marking a significant breakthrough in international climate negotiations.",
+    date: "2 hours ago",
+    category: "Environment",
+    source: "BBC News",
+    url: "https://www.bbc.com/news/climate",
+    image: "https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=400&h=250&fit=crop"
+  },
+  {
+    id: 2,
+    title: "Tech Giants Announce Breakthrough in Quantum Computing",
+    description: "Major technology companies have unveiled new quantum processors capable of solving complex problems thousands of times faster than traditional computers.",
+    date: "4 hours ago",
+    category: "Technology",
+    source: "Reuters",
+    url: "https://www.reuters.com/technology",
+    image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=400&h=250&fit=crop"
+  },
+  {
+    id: 3,
+    title: "Economic Recovery Exceeds Expectations as Markets Reach Record Highs",
+    description: "Global stock markets have surged to unprecedented levels as economic indicators show stronger than predicted recovery across major economies.",
+    date: "6 hours ago",
+    category: "Economy",
+    source: "Bloomberg",
+    url: "https://www.bloomberg.com/markets",
+    image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&h=250&fit=crop"
+  },
+  {
+    id: 4,
+    title: "Major Breakthrough in Medical Research Offers Hope for Cancer Treatment",
+    description: "Scientists have discovered a revolutionary approach to cancer treatment that shows promising results in early clinical trials.",
+    date: "8 hours ago",
+    category: "Health",
+    source: "CNN Health",
+    url: "https://www.cnn.com/health",
+    image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&h=250&fit=crop"
+  },
+  {
+    id: 5,
+    title: "Space Agency Successfully Launches Mission to Explore Jupiter's Moons",
+    description: "A groundbreaking space mission has been launched to study Jupiter's icy moons, potentially revealing clues about the existence of extraterrestrial life.",
+    date: "10 hours ago",
+    category: "Science",
+    source: "NASA",
+    url: "https://www.nasa.gov/mission",
+    image: "https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?w=400&h=250&fit=crop"
+  },
+  {
+    id: 6,
+    title: "International Peace Talks Show Significant Progress in Conflict Resolution",
+    description: "Diplomatic efforts have led to major breakthroughs in peace negotiations, with warring parties agreeing to ceasefire and humanitarian corridors.",
+    date: "12 hours ago",
+    category: "Politics",
+    source: "Al Jazeera",
+    url: "https://www.aljazeera.com/news",
+    image: "https://images.unsplash.com/photo-1586348943529-beaae6c28db9?w=400&h=250&fit=crop"
+  },
+  {
+    id: 7,
+    title: "Renewable Energy Investments Surge as Countries Commit to Green Transition",
+    description: "Global investments in renewable energy have reached record levels as nations accelerate their transition to sustainable power sources.",
+    date: "14 hours ago",
+    category: "Environment",
+    source: "The Guardian",
+    url: "https://www.theguardian.com/environment",
+    image: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=400&h=250&fit=crop"
+  },
+  {
+    id: 8,
+    title: "Artificial Intelligence Revolutionizes Healthcare Diagnostics",
+    description: "New AI-powered diagnostic tools are transforming medical care, providing faster and more accurate detection of diseases.",
+    date: "16 hours ago",
+    category: "Technology",
+    source: "Wired",
+    url: "https://www.wired.com/health",
+    image: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=400&h=250&fit=crop"
+  }
+];
+
+
 const NewsPage = () => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState('all');
 
-  // Sample real news articles from major news websites
-  const newsArticles = [
-    {
-      id: 1,
-      title: "Global Climate Summit Reaches Historic Agreement on Carbon Emissions",
-      description: "World leaders have agreed to ambitious new targets for reducing carbon emissions by 2030, marking a significant breakthrough in international climate negotiations.",
-      date: "2 hours ago",
-      category: "Environment",
-      source: "BBC News",
-      url: "https://www.bbc.com/news/climate",
-      image: "https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=400&h=250&fit=crop"
-    },
-    {
-      id: 2,
-      title: "Tech Giants Announce Breakthrough in Quantum Computing",
-      description: "Major technology companies have unveiled new quantum processors capable of solving complex problems thousands of times faster than traditional computers.",
-      date: "4 hours ago",
-      category: "Technology",
-      source: "Reuters",
-      url: "https://www.reuters.com/technology",
-      image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=400&h=250&fit=crop"
-    },
-    {
-      id: 3,
-      title: "Economic Recovery Exceeds Expectations as Markets Reach Record Highs",
-      description: "Global stock markets have surged to unprecedented levels as economic indicators show stronger than predicted recovery across major economies.",
-      date: "6 hours ago",
-      category: "Economy",
-      source: "Bloomberg",
-      url: "https://www.bloomberg.com/markets",
-      image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&h=250&fit=crop"
-    },
-    {
-      id: 4,
-      title: "Major Breakthrough in Medical Research Offers Hope for Cancer Treatment",
-      description: "Scientists have discovered a revolutionary approach to cancer treatment that shows promising results in early clinical trials.",
-      date: "8 hours ago",
-      category: "Health",
-      source: "CNN Health",
-      url: "https://www.cnn.com/health",
-      image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&h=250&fit=crop"
-    },
-    {
-      id: 5,
-      title: "Space Agency Successfully Launches Mission to Explore Jupiter's Moons",
-      description: "A groundbreaking space mission has been launched to study Jupiter's icy moons, potentially revealing clues about the existence of extraterrestrial life.",
-      date: "10 hours ago",
-      category: "Science",
-      source: "NASA",
-      url: "https://www.nasa.gov/mission",
-      image: "https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?w=400&h=250&fit=crop"
-    },
-    {
-      id: 6,
-      title: "International Peace Talks Show Significant Progress in Conflict Resolution",
-      description: "Diplomatic efforts have led to major breakthroughs in peace negotiations, with warring parties agreeing to ceasefire and humanitarian corridors.",
-      date: "12 hours ago",
-      category: "Politics",
-      source: "Al Jazeera",
-      url: "https://www.aljazeera.com/news",
-      image: "https://images.unsplash.com/photo-1586348943529-beaae6c28db9?w=400&h=250&fit=crop"
-    },
-    {
-      id: 7,
-      title: "Renewable Energy Investments Surge as Countries Commit to Green Transition",
-      description: "Global investments in renewable energy have reached record levels as nations accelerate their transition to sustainable power sources.",
-      date: "14 hours ago",
-      category: "Environment",
-      source: "The Guardian",
-      url: "https://www.theguardian.com/environment",
-      image: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=400&h=250&fit=crop"
-    },
-    {
-      id: 8,
-      title: "Artificial Intelligence Revolutionizes Healthcare Diagnostics",
-      description: "New AI-powered diagnostic tools are transforming medical care, providing faster and more accurate detection of diseases.",
-      date: "16 hours ago",
-      category: "Technology",
-      source: "Wired",
-      url: "https://www.wired.com/health",
-      image: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=400&h=250&fit=crop"
-    }
-  ];
 
   useEffect(() => {
     // Simulate API loading
     const timer = setTimeout(() => {
-      setArticles(newsArticles);
+      setArticles(NEWS_ARTICLES);
       setLoading(false);
     }, 1000);
 

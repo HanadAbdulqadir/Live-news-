@@ -1,7 +1,7 @@
 import React, { useState, lazy, Suspense, useEffect, useMemo } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import './App.css';
-import { GLOBAL_NEWS_SOURCES, getSourcesByContinent, searchSources, getLiveStreams, getWebsiteSources } from './globalNewsData';
+import { getSourcesByContinent } from './globalNewsData';
 
 // Lazy load components for better performance
 const HomeTab = lazy(() => import('./HomeTab'));
@@ -211,7 +211,9 @@ const useFilteredCategories = (debouncedQuery, filters) => {
 
 // Main App Component
 function App() {
-  const [searchQuery, debouncedQuery, setSearchQuery, filters, updateFilter] = useAdvancedSearch('', 300);
+  // updateFilter is intentionally not destructured: no App-level control changes
+  // these filters yet, so they stay at their defaults. CountriesPage owns its own.
+  const [searchQuery, debouncedQuery, setSearchQuery, filters] = useAdvancedSearch('', 300);
   const [selectedSource, setSelectedSource] = useState(null);
   const filteredCategories = useFilteredCategories(debouncedQuery, filters);
 
