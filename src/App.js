@@ -8,6 +8,7 @@ const HomeTab = lazy(() => import('./HomeTab'));
 const CountriesPage = lazy(() => import('./CountriesPage'));
 const CountryPage = lazy(() => import('./CountryPage'));
 const LivePage = lazy(() => import('./LivePage'));
+const ComparePage = lazy(() => import('./ComparePage'));
 const NewsPage = lazy(() => import('./NewsPage'));
 
 // Loading component for Suspense fallback
@@ -56,6 +57,15 @@ const Navigation = ({ searchQuery, setSearchQuery }) => {
             >
               <span className="nav-icon">🔴</span>
               Live
+            </Link>
+          </li>
+          <li>
+            <Link 
+              to="/compare" 
+              className={location.pathname.startsWith('/compare') ? 'active' : ''}
+            >
+              <span className="nav-icon">⚖️</span>
+              Compare
             </Link>
           </li>
           <li>
@@ -133,7 +143,6 @@ const useAdvancedSearch = (initialValue = '', delay = 300) => {
   const [filters, setFilters] = useState({
     category: 'all',
     continent: 'all',
-    language: 'all',
     isLive: false
   });
 
@@ -178,10 +187,9 @@ const useFilteredCategories = (debouncedQuery, filters) => {
               // Apply additional filters
               const matchesCategory = filters.category === 'all' || source.category === filters.category;
               const matchesContinent = filters.continent === 'all' || continent === filters.continent;
-              const matchesLanguage = filters.language === 'all' || source.language === filters.language;
-              const matchesLive = !filters.isLive || source.isLive;
-              
-              return matchesQuery && matchesCategory && matchesContinent && matchesLanguage && matchesLive;
+              const matchesLive = !filters.isLive || Boolean(source.streamUrl);
+
+              return matchesQuery && matchesCategory && matchesContinent && matchesLive;
             })
             .map(source => ({
               ...source,
@@ -251,6 +259,8 @@ function App() {
                 } />
                 <Route path="/news" element={<NewsPage />} />
                 <Route path="/country/:countryName" element={<CountryPage />} />
+                <Route path="/compare" element={<ComparePage />} />
+                <Route path="/compare/:countryName" element={<ComparePage />} />
               </Routes>
             </Suspense>
           </main>

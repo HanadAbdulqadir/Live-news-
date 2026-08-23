@@ -1,0 +1,100 @@
+# country|broadcaster|category|website
+# The 81 countries that had no named broadcaster in countries.js.
+# category: state = government/public broadcaster, private = commercial, intl = outward-facing international service
+Albania|RTSH|state|https://www.rtsh.al/
+Albania|Top Channel|private|https://top-channel.tv/
+Andorra|RTVA|state|https://www.rtva.ad/
+Armenia|Public Television of Armenia|state|https://www.1tv.am/
+Armenia|Shant TV|private|https://www.shanttv.com/
+Azerbaijan|Ictimai TV|state|https://ictimai.tv/
+Azerbaijan|AzTV|state|https://aztv.az/
+Belarus|Belarus 1|state|https://www.tvr.by/
+Belarus|ONT|state|https://ont.by/
+Bosnia and Herzegovina|BHRT|state|https://bhrt.ba/
+Bosnia and Herzegovina|N1 BiH|private|https://n1info.ba/
+Bulgaria|BNT|state|https://bnt.bg/
+Bulgaria|bTV|private|https://btvnovinite.bg/
+Croatia|HRT|state|https://www.hrt.hr/
+Croatia|N1 Hrvatska|private|https://n1info.hr/
+Cyprus|CyBC|state|https://cybc.com.cy/
+Czech Republic|Ceska televize|state|https://ct24.ceskatelevize.cz/
+Czech Republic|CNN Prima News|private|https://cnn.iprima.cz/
+Estonia|ERR|state|https://news.err.ee/
+Georgia|Georgian Public Broadcaster|state|https://1tv.ge/
+Georgia|Rustavi 2|private|https://rustavi2.ge/
+Hungary|M1|state|https://hirado.hu/
+Hungary|RTL Hungary|private|https://rtl.hu/
+Iceland|RUV|state|https://www.ruv.is/
+Kazakhstan|Khabar 24|state|https://24.kz/
+Kosovo|RTK|state|https://www.rtklive.com/
+Latvia|LSM|state|https://www.lsm.lv/
+Liechtenstein|Radio Liechtenstein|state|https://www.radio.li/
+Lithuania|LRT|state|https://www.lrt.lt/
+Luxembourg|RTL Luxembourg|private|https://www.rtl.lu/
+Malta|TVM|state|https://tvmnews.mt/
+Moldova|Moldova 1|state|https://www.trm.md/
+Monaco|Monaco Info|state|https://www.monacoinfo.com/
+Montenegro|RTCG|state|https://www.rtcg.me/
+North Macedonia|MRT|state|https://mrt.com.mk/
+Romania|TVR|state|https://www.tvr.ro/
+Romania|Digi24|private|https://www.digi24.ro/
+San Marino|San Marino RTV|state|https://www.sanmarinortv.sm/
+Serbia|RTS|state|https://www.rts.rs/
+Serbia|N1 Srbija|private|https://n1info.rs/
+Slovakia|RTVS|state|https://spravy.rtvs.sk/
+Slovenia|RTV Slovenija|state|https://www.rtvslo.si/
+Vatican City|Vatican News|state|https://www.vaticannews.va/
+Angola|TPA|state|https://www.tpa.ao/
+Benin|ORTB|state|https://ortb.bj/
+Botswana|Botswana TV|state|https://www.btv.gov.bw/
+Burkina Faso|RTB|state|https://www.rtb.bf/
+Burundi|RTNB|state|https://www.rtnb.bi/
+Cabo Verde|RTC|state|https://www.rtc.cv/
+Central African Republic|Radiodiffusion Television Centrafricaine|state|http://www.radiocentrafrique.net/
+Chad|Tele Tchad|state|https://www.teletchad.td/
+Comoros|ORTC|state|https://www.ortc.km/
+Congo|Telecongo|state|https://www.telecongo.cg/
+Democratic Republic of the Congo|RTNC|state|https://www.rtnc.cd/
+Djibouti|RTD|state|https://www.rtd.dj/
+Equatorial Guinea|TVGE|state|https://www.rtvge.net/
+Eritrea|Eri-TV|state|https://www.eritv.er/
+Eswatini|Eswatini TV|state|https://www.ebis.sz/
+Gabon|Gabon 1ere|state|https://www.gabon1ere.ga/
+Gambia|GRTS|state|https://www.grts.gm/
+Guinea|RTG|state|https://www.rtg.gov.gn/
+Guinea-Bissau|TGB|state|https://www.rtp.pt/
+Lesotho|Lesotho TV|state|https://www.gov.ls/
+Liberia|LBS|state|https://www.lbsliberia.com/
+Libya|Libya Al Ahrar|private|https://libyaalahrar.tv/
+Madagascar|TVM|state|https://www.tvm.mg/
+Malawi|MBC|state|https://www.mbc.mw/
+Mali|ORTM|state|https://www.ortm.ml/
+Mauritania|EMM|state|https://www.emm.mr/
+Mauritius|MBC|state|https://mbcnews.mu/
+Mozambique|TVM|state|https://www.tvm.co.mz/
+Namibia|NBC|state|https://www.nbc.na/
+Niger|Tele Sahel|state|https://www.ortn.ne/
+Rwanda|Rwanda Broadcasting Agency|state|https://www.rba.co.rw/
+Sao Tome and Principe|TVS|state|https://www.stp-press.st/
+Seychelles|SBC|state|https://www.sbc.sc/
+Sierra Leone|SLBC|state|https://slbc.sl/
+Somalia|SNTV|state|https://sntv.gov.so/
+South Sudan|SSBC|state|https://www.ssbctv.net/
+Sudan|Sudan TV|state|https://sudantv.sd/
+Togo|TVT|state|https://www.togotelevision.tg/
+Afghanistan|TOLOnews|private|https://tolonews.com/
+Afghanistan|RTA|state|https://rta.af/
+Bhutan|BBS|state|https://www.bbs.bt/
+Brunei|RTB|state|https://www.rtb.gov.bn/
+East Timor|RTTL|state|https://www.rttlep.tl/
+Kyrgyzstan|KTRK|state|https://ktrk.kg/
+Maldives|PSM News|state|https://psmnews.mv/
+North Korea|KCTV|state|http://www.kcna.kp/
+Taiwan|Taiwan Plus|intl|https://www.taiwanplus.com/
+Taiwan|PTS|state|https://news.pts.org.tw/
+Tajikistan|TV Safina|state|https://www.tv.tj/
+Turkmenistan|Altyn Asyr|state|https://turkmentv.gov.tm/
+United Arab Emirates|Sky News Arabia|private|https://www.skynewsarabia.com/
+United Arab Emirates|Dubai TV|state|https://www.dmi.ae/
+Uzbekistan|UzReport TV|private|https://uzreport.news/
+Uzbekistan|MY5|state|https://my5.uz/

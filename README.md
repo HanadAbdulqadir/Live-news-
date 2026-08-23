@@ -1,163 +1,127 @@
-# NEWSFLIX - News Streaming Platform
+# NEWSFLIX — global live news directory
 
-A modern React-based news streaming application that aggregates live streams and articles from non-Western news sources.
+A React app for watching live news from around the world, built around one rule:
+**a channel is only shown as a player if its official channel was confirmed.**
+Anything unconfirmed is a link to the broadcaster, never an iframe that cannot load.
 
-## Features
+Current directory: **197 countries · 411 broadcasters · 285 with a confirmed
+channel · 117 live** at the last build.
 
-- **Live Streaming**: Watch live news streams from 28+ international news sources across 7 continents
-- **Article Scraping**: Automatic fetching and display of latest articles from RSS feeds
-- **Modern UI**: Glassmorphism design with smooth animations and responsive layout
-- **Search Functionality**: Filter news sources by name
-- **Auto-Refresh**: Manual refresh button for latest articles
+## What it does
 
-## News Sources by Continent
+### Browse by country
+Every sovereign state, grouped by continent, with the broadcasters we could
+place there. Each source shows whether it has a live feed or is link-only.
 
-### North America
-- **CNN** (USA)
-- **Fox News** (USA)
-- **MSNBC** (USA)
-- **CBC News** (Canada)
+### Compare coverage
+The part worth having. For 28 countries the directory records the same story from
+four positions:
 
-### Europe
-- **BBC News** (UK)
-- **France 24** (France)
-- **DW News** (Germany)
-- **Euronews** (Pan-European)
+| Tier | What it is |
+| --- | --- |
+| **State / public** | The government or public broadcaster account |
+| **International** | Foreign outlets aimed at a global audience |
+| **Independent domestic** | Domestic outlets outside direct state control |
+| **External / opposition** | Diaspora, opposition, or rival-state coverage |
 
-### Asia
-- **CGTN** (China)
-- **NDTV India** (India)
-- **NHK World** (Japan)
-- **KBS World** (South Korea)
+`/compare/Iran` puts Press TV, BBC Persian, Iran International, Al Jazeera and
+Al Mayadeen on one screen. `/compare/Russia` sets RT against DW, France 24 and
+TVP World. Up to four feeds play at once, all muted until you pick one.
 
-### Middle East
-- **Al Jazeera** (Qatar)
-- **Al Arabiya** (Saudi Arabia)
-- **Sky News Arabia** (UAE)
-- **TRT World** (Turkey)
+## How the data is built
 
-### Africa
-- **SABC News** (South Africa)
-- **NBC Africa** (Nigeria)
-- **KBC Kenya** (Kenya)
-- **Egypt Today** (Egypt)
+Nothing in the directory is typed from memory. Three tables feed one generator:
 
-### Latin America
-- **Telesur** (Venezuela)
-- **CubaDebate** (Cuba)
-- **TeleSUR English** (Pan-Regional)
-- **Globo News** (Brazil)
-
-### Oceania
-- **ABC News Australia** (Australia)
-- **Sky News Australia** (Australia)
-- **TVNZ** (New Zealand)
-- **RNZ Pacific** (New Zealand)
-
-## Technologies Used
-
-- React 19
-- CSS3 with Glassmorphism effects
-- RSS Feed integration
-- CORS proxy for API calls
-- Modern JavaScript (ES6+)
-
-## Getting Started
-
-### Prerequisites
-
-- Node.js (v14 or higher)
-- npm or yarn
-
-### Installation
-
-1. Clone the repository:
-```bash
-git clone https://github.com/HanadAbdulqadir/Live-news-.git
-cd Live-news-
+```
+data/countries-meta.psv         country | iso2 | continent
+data/broadcasters.psv           country | broadcaster | category | website
+data/broadcaster-websites.psv   link fallbacks for unresolvable broadcasters
+data/channel-overrides.psv      hand-verified channels (rebrands, renames)
+        │
+        ├─ scripts/resolve-directory.py  → data/resolved.psv
+        └─ scripts/build-directory.py    → src/globalNewsData.js
 ```
 
-2. Install dependencies:
+`resolve-directory.py` searches YouTube for each broadcaster and accepts a
+channel only when **all** of these hold:
+
+1. the channel's own title matches the broadcaster name (not just the search snippet),
+2. its handle is not the numeric-suffix pattern impostor mirrors use (`@sabcnews4207`),
+3. the country the channel itself declares is the country we asked about.
+
+That third check matters more than it sounds. Without it "Canal 6" in Nicaragua
+resolves to Honduras's Canal 6, "TVN" in Panama to Chile's, and "Sky News
+Arabia" to Sky News in London. A broadcaster that fails any check gets no channel
+at all.
+
+### Rebuilding
+
 ```bash
-npm install
+python scripts/resolve-directory.py data/broadcasters.psv data/resolved.psv
+python scripts/build-directory.py
 ```
 
-3. Start the development server:
+To check or find a single channel by hand:
+
 ```bash
-npm start
+bash scripts/verify-channels.sh --search "Channels Television"
+printf 'CNA|@ChannelNewsAsia\n' | bash scripts/verify-channels.sh
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Live status is a snapshot: a broadcaster off air at build time is recorded as
+link-only until the next run. Re-run the resolver to refresh.
 
-## Project Structure
+## Project structure
 
 ```
 src/
-├── App.js          # Main React component
-├── App.css         # Styling with modern glassmorphism design
-├── index.js        # React application entry point
-public/
-├── index.html      # HTML template
+├── App.js                # Routes, navigation, search and filter state
+├── HomeTab.js            # Live grid, real directory totals, compare entry points
+├── CountriesPage.js      # Search + continent filter
+├── CountriesList.js      # Countries grouped by continent
+├── CountryPage.js        # One country's broadcasters
+├── ComparePage.js        # Multi-perspective 2x2 feed wall
+├── LivePage.js           # Every confirmed live feed
+├── NewsPage.js           # Articles
+├── globalNewsData.js     # GENERATED directory — do not edit by hand
+├── countries.js          # Country lookups, derived from the directory
+├── perspectives.js       # The four-tier comparison sets
+└── verifiedStreams.js    # Hand-verified channels behind the comparison sets
 ```
 
-## Features in Detail
+Two datasets, deliberately:
 
-### Live Streaming
-- Embedded live streams from YouTube and Rumble
-- Responsive iframes that adjust to screen size
-- Error handling for unavailable streams
+- **`globalNewsData.js`** — the broad generated directory, rebuilt by script.
+- **`verifiedStreams.js`** — a small hand-checked set backing `perspectives.js`,
+  where picking the wrong "BBC Persian vs BBC News" would quietly change what a
+  comparison means.
 
-### Article Integration
-- RSS feed parsing for latest articles
-- Automatic article fetching on page load
-- Manual refresh capability
-- Clean article display with titles, descriptions, and dates
+## Getting started
 
-### User Interface
-- Modern glassmorphism design
-- Smooth animations and transitions
-- Responsive grid layout
-- Mobile-friendly design
-- Custom scrollbars and loading states
+```bash
+npm install
+npm start          # http://localhost:3000
+npm test           # 39 tests across 4 suites
+npm run build
+```
+
+Tests cover directory integrity (no channel claimed by two countries, no stream
+URL on an unverified source, every source reachable), the perspective model, and
+accessibility.
 
 ## Deployment
 
-The app can be deployed to various platforms:
-
-### Netlify
-1. Build the project: `npm run build`
-2. Drag and drop the `build` folder to Netlify
-
-### Vercel
-1. Install Vercel CLI: `npm i -g vercel`
-2. Run: `vercel` in the project directory
-
-### GitHub Pages
-1. Install gh-pages: `npm install --save-dev gh-pages`
-2. Add to package.json:
-```json
-"homepage": "https://yourusername.github.io/repo-name",
-"scripts": {
-  "predeploy": "npm run build",
-  "deploy": "gh-pages -d build"
-}
+```bash
+npm run deploy     # gh-pages
 ```
-3. Run: `npm run deploy`
 
-## Contributing
+## Known limits
 
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature-name`
-3. Commit changes: `git commit -m 'Add feature'`
-4. Push to branch: `git push origin feature-name`
-5. Submit a pull request
-
-## License
-
-This project is licensed under the ISC License.
-
-## Acknowledgments
-
-- News organizations for providing live streams and RSS feeds
-- React team for the excellent framework
-- CSS Tricks for glassmorphism design inspiration
+- **Live status goes stale.** It reflects the last resolver run, not this moment.
+- **RT and Press TV have no YouTube presence.** RT's official feed is on Rumble,
+  which exposes no stable embed ID, so both are link-only.
+- **100 broadcasters were dropped** from the old lists for having neither a
+  resolvable channel nor a website. `scripts/build-directory.py` prints them;
+  adding a URL to `data/broadcaster-websites.psv` brings one back.
+- **The resolver is deliberately strict.** It would rather lose a real
+  broadcaster than attribute the wrong channel to a country.

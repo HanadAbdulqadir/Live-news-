@@ -1,0 +1,70 @@
+# country|broadcaster|website
+# Website URLs for broadcasters the automated resolver could not match to a
+# YouTube channel. Without these the entry has nothing to link to at all, and an
+# entry that links nowhere does not belong in the directory.
+Bahamas|ZNS Bahamas|https://znsbahamas.com/
+Bahamas|Our News|https://ourbahamasnews.com/
+Barbados|CBC TV8|https://www.cbc.bb/
+Barbados|Nation News|https://www.nationnews.com/
+Cameroon|CRTV|https://www.crtv.cm/
+Cameroon|Canal 2|https://www.canal2international.net/
+Cameroon|STV|https://www.stv.cm/
+Cuba|CubaDebate|http://www.cubadebate.cu/
+Cuba|Cubavision|https://www.cubavision.icrt.cu/
+Cuba|Tele Rebelde|https://www.tvcubana.icrt.cu/
+DR Congo|RTNC|https://www.rtnc.cd/
+DR Congo|Digital Congo|https://www.digitalcongo.net/
+DR Congo|Canal Kin TV|https://www.canalkin.cd/
+Dominica|DBS Radio|https://dbcradio.net/
+Dominica|Kairi FM|https://kairifm.com/
+Ethiopia|ETV|https://www.ebc.et/
+Ethiopia|Fana TV|https://www.fanabc.com/
+Ethiopia|ESAT|https://ethsat.com/
+Grenada|GBN|https://www.gbn.gd/
+Grenada|GIS|https://www.gov.gd/
+Guatemala|Canal Antigua|https://canalantigua.tv/
+Guatemala|Guatevision|https://www.guatevision.com/
+Guatemala|Canal 3|https://www.canal3.com.gt/
+Haiti|Tele Haiti|https://www.telehaiti.com/
+Haiti|Canal+ Haiti|https://www.canalplus-haiti.com/
+Iran|Press TV|https://www.presstv.ir/live
+Iran|IRIB|https://www.iribnews.ir/
+Iran|Hispan TV|https://www.hispantv.com/
+Ivory Coast|RTI|https://www.rti.ci/
+Ivory Coast|NCI|https://www.nci.ci/
+Ivory Coast|Life TV|https://www.lifetv.ci/
+Kiribati|Radio Kiribati|https://www.mia.gov.ki/
+Kiribati|Te Uekera|https://www.mia.gov.ki/
+Marshall Islands|MBC|https://rmigov.org/
+Marshall Islands|Marshall Islands Journal|https://marshallislandsjournal.com/
+Micronesia|FSM TV|https://gov.fm/
+Micronesia|Island Times|https://islandtimes.org/
+Nauru|Nauru TV|https://www.nauru.gov.nr/
+Nauru|Nauru Bulletin|https://www.nauru.gov.nr/
+Nepal|NTV Nepal|https://www.ntv.org.np/
+Nepal|Kantipur TV|https://kantipurtv.com/
+Nepal|News 24|https://www.news24nepal.tv/
+Palestine|Palestine TV|https://www.palestinetv.ps/
+Palestine|Al Quds|https://www.alquds.com/
+Palestine|Ma'an TV|https://www.maannews.net/
+Saint Kitts and Nevis|ZIZ|https://www.zizonline.com/
+Saint Kitts and Nevis|WINN FM|https://www.winnmediaskn.com/
+Suriname|STVS|https://www.stvs.sr/
+Suriname|ABC|https://www.abcsuriname.com/
+Suriname|RBN|https://www.rbn.sr/
+Syria|Syria TV|https://www.syria.tv/
+Syria|Al Ikhbariya|https://www.alikhbaria.sy/
+Syria|Orient TV|https://orient-news.net/
+Trinidad and Tobago|CNC3|https://www.cnc3.co.tt/
+Trinidad and Tobago|TV6|https://www.tv6tnt.com/
+Trinidad and Tobago|C News|https://www.cnewslive.com/
+Tuvalu|Radio Tuvalu|https://www.gov.tv/
+Tuvalu|Tuvalu News|https://www.gov.tv/
+Ukraine|1+1|https://tsn.ua/
+Ukraine|Inter|https://inter.ua/
+Ukraine|Ukraina|https://suspilne.media/
+Vanuatu|VBTC|https://www.vbtc.vu/
+Vanuatu|TV Blong Vanuatu|https://www.vbtc.vu/
+Yemen|Yemen TV|https://www.yemen-tv.net/
+Yemen|Al Masirah|https://www.almasirah.net.ye/
+Yemen|Aden TV|https://www.adentv.net/

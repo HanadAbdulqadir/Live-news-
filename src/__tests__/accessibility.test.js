@@ -1,4 +1,5 @@
 import { render } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import { axe, toHaveNoViolations } from 'jest-axe';
 import App from '../App';
 import HomeTab from '../HomeTab';
@@ -15,7 +16,12 @@ test('App component should have no accessibility violations', async () => {
 });
 
 test('HomeTab component should have no accessibility violations', async () => {
-  const { container } = render(<HomeTab filteredCategories={[]} setSelectedSource={() => {}} />);
+  // HomeTab links into the compare and country routes, so it needs a router.
+  const { container } = render(
+    <MemoryRouter>
+      <HomeTab filteredCategories={[]} setSelectedSource={() => {}} />
+    </MemoryRouter>
+  );
   const results = await axe(container);
   expect(results).toHaveNoViolations();
 });

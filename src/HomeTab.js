@@ -1,6 +1,23 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { getDirectoryStats } from './globalNewsData';
+import { getPerspectiveCountries } from './perspectives';
 
 const HomeTab = ({ filteredCategories, setSelectedSource }) => {
+  const stats = getDirectoryStats();
+  const featured = getPerspectiveCountries()
+    .filter((c) => c.playable >= 3)
+    .slice(0, 8);
+
+  // Only broadcasters with a confirmed live feed get a player; the rest are
+  // reachable from the country pages as links.
+  const categories = filteredCategories
+    .map((category) => ({
+      ...category,
+      sources: category.sources.filter((source) => source.streamUrl),
+    }))
+    .filter((category) => category.sources.length > 0);
+
   return (
     <>
       {/* Hero Section */}
@@ -8,19 +25,21 @@ const HomeTab = ({ filteredCategories, setSelectedSource }) => {
         <div className="hero-content">
           <h1 className="hero-title">Global News Stream</h1>
           <p className="hero-subtitle">
-            Watch live news from around the world. Stay informed with real-time coverage from trusted international sources.
+            Live news from around the world — and, where it matters most, the same story
+            told by the state broadcaster, the international press and the opposition, side
+            by side.
           </p>
         </div>
       </section>
 
-      {/* News Channels by Category */}
-      {filteredCategories.map(category => (
+      {/* News Channels by Continent */}
+      {categories.map((category) => (
         <section key={category.id} className="content-row">
           <h2 className="row-title">{category.title}</h2>
           <div className="streams-grid">
-            {category.sources.map(source => (
+            {category.sources.map((source) => (
               <div
-                key={source.id}
+                key={`${source.country}-${source.id}`}
                 className="stream"
                 onClick={() => setSelectedSource(source)}
               >
@@ -35,7 +54,9 @@ const HomeTab = ({ filteredCategories, setSelectedSource }) => {
                 </div>
                 <div className="stream-info">
                   <h3 className="stream-title">{source.name}</h3>
-                  <p className="stream-description">{source.country} • Live streaming</p>
+                  <p className="stream-description">
+                    {source.flag} {source.country}
+                  </p>
                 </div>
               </div>
             ))}
@@ -43,81 +64,59 @@ const HomeTab = ({ filteredCategories, setSelectedSource }) => {
         </section>
       ))}
 
-      {/* Quick Stats Section */}
+      {categories.length === 0 && (
+        <section className="content-row">
+          <p className="compare-empty">
+            No live feeds match the current filters. Browse by country to reach every
+            broadcaster in the directory.
+          </p>
+        </section>
+      )}
+
+      {/* Real directory numbers, not round ones */}
       <section className="content-row">
         <h2 className="row-title">Global Coverage</h2>
         <div className="stats-grid">
           <div className="stat-card">
-            <h3>50+</h3>
+            <h3>{stats.countries}</h3>
             <p>Countries Covered</p>
           </div>
           <div className="stat-card">
-            <h3>200+</h3>
-            <p>News Channels</p>
+            <h3>{stats.sources}</h3>
+            <p>Broadcasters Listed</p>
           </div>
           <div className="stat-card">
-            <h3>24/7</h3>
-            <p>Live Streaming</p>
+            <h3>{stats.verified}</h3>
+            <p>Confirmed Channels</p>
           </div>
           <div className="stat-card">
-            <h3>Global</h3>
-            <p>Real-time Coverage</p>
+            <h3>{stats.live}</h3>
+            <p>Live Feeds</p>
           </div>
         </div>
       </section>
 
-      {/* Featured Articles Section */}
-      <section className="articles-section">
-        <h2 className="articles-title">📰 Latest Headlines</h2>
-        <div className="articles-grid">
-          <div className="article-card">
-            <div className="article-category breaking">Breaking News</div>
-            <h4 className="article-title">
-              <a href="#" target="_blank" rel="noopener noreferrer">
-                Global Summit: World Leaders Agree on Climate Action Plan
-              </a>
-            </h4>
-            <p className="article-description">
-              Historic agreement reached as nations commit to carbon neutrality by 2050 with immediate funding for renewable energy projects...
-            </p>
-            <span className="article-date">Just now • 🌍 Environment</span>
-          </div>
-          <div className="article-card">
-            <div className="article-category politics">Politics</div>
-            <h4 className="article-title">
-              <a href="#" target="_blank" rel="noopener noreferrer">
-                Diplomatic Breakthrough: Peace Talks Resume in Conflict Zones
-              </a>
-            </h4>
-            <p className="article-description">
-              International mediators report significant progress as warring parties agree to ceasefire and humanitarian corridors...
-            </p>
-            <span className="article-date">30 mins ago • 🕊️ Politics</span>
-          </div>
-          <div className="article-card">
-            <div className="article-category tech">Technology</div>
-            <h4 className="article-title">
-              <a href="#" target="_blank" rel="noopener noreferrer">
-                AI Revolution: New Breakthrough in Quantum Computing
-              </a>
-            </h4>
-            <p className="article-description">
-              Scientists achieve quantum supremacy with new processor capable of solving complex problems in seconds instead of years...
-            </p>
-            <span className="article-date">1 hour ago • 🤖 Technology</span>
-          </div>
-          <div className="article-card">
-            <div className="article-category economy">Economy</div>
-            <h4 className="article-title">
-              <a href="#" target="_blank" rel="noopener noreferrer">
-                Markets Soar as Global Economic Recovery Exceeds Expectations
-              </a>
-            </h4>
-            <p className="article-description">
-              Stock markets hit record highs as economic indicators show stronger than predicted recovery across major economies...
-            </p>
-            <span className="article-date">2 hours ago • 💰 Economy</span>
-          </div>
+      {/* Comparison entry points */}
+      <section className="content-row">
+        <h2 className="row-title">⚖️ See a country from four directions</h2>
+        <p className="compare-note">
+          State broadcaster, international press, independent domestic outlets and external
+          or opposition coverage — playing at the same time.
+        </p>
+        <div className="compare-country-grid">
+          {featured.map(({ country, flag, playable, total }) => (
+            <Link
+              key={country}
+              to={`/compare/${encodeURIComponent(country)}`}
+              className="compare-country-card"
+            >
+              <span className="compare-country-flag">{flag}</span>
+              <span className="compare-country-name">{country}</span>
+              <span className="compare-country-meta">
+                {playable} live · {total} sources
+              </span>
+            </Link>
+          ))}
         </div>
       </section>
 
@@ -125,10 +124,18 @@ const HomeTab = ({ filteredCategories, setSelectedSource }) => {
       <section className="cta-section">
         <div className="cta-content">
           <h2>Start Watching Global News Now</h2>
-          <p>Access live streams from trusted news sources around the world. Stay informed with real-time coverage.</p>
+          <p>
+            Every channel here was matched to the broadcaster&apos;s own account. Where we
+            could not confirm one, you get a link to the broadcaster instead of a player
+            that will not load.
+          </p>
           <div className="cta-buttons">
-            <a href="/live" className="cta-button primary">Watch Live News</a>
-            <a href="/countries" className="cta-button secondary">Browse by Country</a>
+            <Link to="/live" className="cta-button primary">
+              Watch Live News
+            </Link>
+            <Link to="/countries" className="cta-button secondary">
+              Browse by Country
+            </Link>
           </div>
         </div>
       </section>

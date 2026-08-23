@@ -1,0 +1,483 @@
+# country|broadcaster|category|website
+United States|CNN|unknown|
+United States|Fox News|unknown|
+United States|MSNBC|unknown|
+United States|ABC News|unknown|
+United States|NBC News|unknown|
+United States|CBS News|unknown|
+United States|Bloomberg|unknown|
+United States|CNBC|unknown|
+Canada|CBC News|unknown|
+Canada|CTV News|unknown|
+Canada|Global News|unknown|
+Canada|CityNews|unknown|
+Canada|CP24|unknown|
+Mexico|Televisa|unknown|
+Mexico|TV Azteca|unknown|
+Mexico|Milenio|unknown|
+Mexico|Excelsior TV|unknown|
+Mexico|Foro TV|unknown|
+Belize|Channel 5 Belize|unknown|
+Belize|Love FM|unknown|
+Belize|Plus TV|unknown|
+Costa Rica|Teletica|unknown|
+Costa Rica|Repretel|unknown|
+Costa Rica|Canal 7|unknown|
+El Salvador|Canal 4|unknown|
+El Salvador|Canal 12|unknown|
+El Salvador|TVX|unknown|
+Guatemala|Canal Antigua|unknown|
+Guatemala|Guatevision|unknown|
+Guatemala|Canal 3|unknown|
+Honduras|Canal 5|unknown|
+Honduras|Canal 6|unknown|
+Honduras|Canal 11|unknown|
+Nicaragua|Canal 4|unknown|
+Nicaragua|Canal 6|unknown|
+Nicaragua|Canal 10|unknown|
+Panama|TVN|unknown|
+Panama|RPC|unknown|
+Panama|Telemetro|unknown|
+Antigua and Barbuda|ABS TV|unknown|
+Antigua and Barbuda|Observer Radio|unknown|
+Bahamas|ZNS Bahamas|unknown|
+Bahamas|Our News|unknown|
+Barbados|CBC TV8|unknown|
+Barbados|Nation News|unknown|
+Cuba|CubaDebate|unknown|
+Cuba|Cubavision|unknown|
+Cuba|Tele Rebelde|unknown|
+Dominica|DBS Radio|unknown|
+Dominica|Kairi FM|unknown|
+Dominican Republic|Color Vision|unknown|
+Dominican Republic|Teleantillas|unknown|
+Dominican Republic|CDN|unknown|
+Grenada|GBN|unknown|
+Grenada|GIS|unknown|
+Haiti|Tele Haiti|unknown|
+Haiti|Canal+ Haiti|unknown|
+Jamaica|TVJ|unknown|
+Jamaica|CVM TV|unknown|
+Jamaica|RJR|unknown|
+Saint Kitts and Nevis|ZIZ|unknown|
+Saint Kitts and Nevis|WINN FM|unknown|
+Saint Lucia|HTS|unknown|
+Saint Lucia|DBS|unknown|
+Saint Vincent and the Grenadines|NBC|unknown|
+Saint Vincent and the Grenadines|WE FM|unknown|
+Trinidad and Tobago|CNC3|unknown|
+Trinidad and Tobago|TV6|unknown|
+Trinidad and Tobago|C News|unknown|
+Argentina|TN|unknown|
+Argentina|C5N|unknown|
+Argentina|América TV|unknown|
+Argentina|Crónica TV|unknown|
+Bolivia|ATB|unknown|
+Bolivia|Red Uno|unknown|
+Bolivia|Bolivia TV|unknown|
+Brazil|Globo News|unknown|
+Brazil|Record News|unknown|
+Brazil|Band News|unknown|
+Brazil|SBT|unknown|
+Chile|TVN|unknown|
+Chile|Chilevisión|unknown|
+Chile|Mega|unknown|
+Chile|CNN Chile|unknown|
+Colombia|Caracol|unknown|
+Colombia|RCN|unknown|
+Colombia|Canal 1|unknown|
+Ecuador|Ecuavisa|unknown|
+Ecuador|Teleamazonas|unknown|
+Ecuador|TC Televisión|unknown|
+Guyana|NCN|unknown|
+Guyana|GTV|unknown|
+Guyana|News Source|unknown|
+Paraguay|Telefuturo|unknown|
+Paraguay|SNT|unknown|
+Paraguay|Paraguay TV|unknown|
+Peru|América TV|unknown|
+Peru|Panamericana|unknown|
+Peru|Latina|unknown|
+Suriname|STVS|unknown|
+Suriname|ABC|unknown|
+Suriname|RBN|unknown|
+Uruguay|Teledoce|unknown|
+Uruguay|Canal 10|unknown|
+Uruguay|Montecarlo|unknown|
+Venezuela|Telesur|unknown|
+Venezuela|Venevisión|unknown|
+Venezuela|Globovisión|unknown|
+United Kingdom|BBC News|unknown|
+United Kingdom|Sky News|unknown|
+United Kingdom|ITV News|unknown|
+United Kingdom|Channel 4 News|unknown|
+United Kingdom|GB News|unknown|
+France|France 24|unknown|
+France|BFM TV|unknown|
+France|TF1|unknown|
+France|LCI|unknown|
+France|France Info|unknown|
+Germany|DW News|unknown|
+Germany|ARD|unknown|
+Germany|ZDF|unknown|
+Germany|n-tv|unknown|
+Germany|Phoenix|unknown|
+Italy|RAI News|unknown|
+Italy|Sky TG24|unknown|
+Italy|Mediaset|unknown|
+Italy|La7|unknown|
+Italy|Tgcom24|unknown|
+Spain|RTVE|unknown|
+Spain|Antena 3|unknown|
+Spain|Telecinco|unknown|
+Spain|La Sexta|unknown|
+Spain|Cuatro|unknown|
+Russia|Russia Today|unknown|
+Russia|Rossiya 24|unknown|
+Russia|NTV|unknown|
+Netherlands|NOS|unknown|
+Netherlands|RTL Nieuws|unknown|
+Netherlands|SBS6|unknown|
+Sweden|SVT|unknown|
+Sweden|TV4|unknown|
+Sweden|Aftonbladet TV|unknown|
+Norway|NRK|unknown|
+Norway|TV2|unknown|
+Norway|TVNorge|unknown|
+Poland|TVP Info|unknown|
+Poland|Polsat News|unknown|
+Poland|TVN24|unknown|
+Ukraine|1+1|unknown|
+Ukraine|Inter|unknown|
+Ukraine|Ukraina|unknown|
+Greece|ERT|unknown|
+Greece|Mega|unknown|
+Greece|ANT1|unknown|
+Portugal|RTP|unknown|
+Portugal|SIC|unknown|
+Portugal|TVI|unknown|
+Ireland|RTÉ|unknown|
+Ireland|Virgin Media|unknown|
+Ireland|TG4|unknown|
+Switzerland|SRF|unknown|
+Switzerland|RTS|unknown|
+Switzerland|RSI|unknown|
+Austria|ORF|unknown|
+Austria|ATV|unknown|
+Austria|Puls 4|unknown|
+Belgium|VRT|unknown|
+Belgium|RTBF|unknown|
+Belgium|RTL|unknown|
+Denmark|DR|unknown|
+Denmark|TV2|unknown|
+Denmark|TV3|unknown|
+Finland|Yle|unknown|
+Finland|MTV|unknown|
+Finland|Nelonen|unknown|
+South Africa|SABC News|unknown|
+South Africa|eNCA|unknown|
+South Africa|Newzroom Afrika|unknown|
+South Africa|eTV|unknown|
+Nigeria|NTA|unknown|
+Nigeria|Channels TV|unknown|
+Nigeria|TVC News|unknown|
+Nigeria|AIT|unknown|
+Egypt|Egypt Today|unknown|
+Egypt|Al Masry Al Youm|unknown|
+Egypt|ON TV|unknown|
+Egypt|CBC Extra|unknown|
+Kenya|KBC Kenya|unknown|
+Kenya|NTV Kenya|unknown|
+Kenya|Citizen TV|unknown|
+Kenya|K24|unknown|
+Ghana|GTV|unknown|
+Ghana|TV3|unknown|
+Ghana|Metro TV|unknown|
+Ghana|Joy News|unknown|
+Morocco|2M|unknown|
+Morocco|Al Aoula|unknown|
+Morocco|Medi1 TV|unknown|
+Algeria|ENTV|unknown|
+Algeria|El Bilad TV|unknown|
+Algeria|Echorouk TV|unknown|
+Tunisia|Watania 1|unknown|
+Tunisia|Hannibal TV|unknown|
+Tunisia|Nessma TV|unknown|
+Ethiopia|ETV|unknown|
+Ethiopia|Fana TV|unknown|
+Ethiopia|ESAT|unknown|
+Uganda|NTV Uganda|unknown|
+Uganda|UBC|unknown|
+Uganda|Bukedde TV|unknown|
+Tanzania|ITV|unknown|
+Tanzania|TBC|unknown|
+Tanzania|Clouds TV|unknown|
+Zimbabwe|ZBC|unknown|
+Zimbabwe|ZTN|unknown|
+Zimbabwe|3K TV|unknown|
+Zambia|ZNBC|unknown|
+Zambia|Muvi TV|unknown|
+Zambia|Prime TV|unknown|
+Senegal|RTS|unknown|
+Senegal|2STV|unknown|
+Senegal|TFM|unknown|
+Ivory Coast|RTI|unknown|
+Ivory Coast|NCI|unknown|
+Ivory Coast|Life TV|unknown|
+Cameroon|CRTV|unknown|
+Cameroon|Canal 2|unknown|
+Cameroon|STV|unknown|
+DR Congo|RTNC|unknown|
+DR Congo|Digital Congo|unknown|
+DR Congo|Canal Kin TV|unknown|
+China|CGTN|unknown|
+China|CCTV|unknown|
+China|Phoenix TV|unknown|
+China|Dragon TV|unknown|
+China|Hunan TV|unknown|
+India|NDTV India|unknown|
+India|Republic TV|unknown|
+India|Times Now|unknown|
+India|India Today|unknown|
+India|Aaj Tak|unknown|
+Japan|NHK World|unknown|
+Japan|Fuji TV|unknown|
+Japan|TBS|unknown|
+Japan|TV Asahi|unknown|
+Japan|NTV|unknown|
+South Korea|KBS World|unknown|
+South Korea|MBC|unknown|
+South Korea|SBS|unknown|
+South Korea|JTBC|unknown|
+South Korea|TV Chosun|unknown|
+Indonesia|TVRI|unknown|
+Indonesia|RCTI|unknown|
+Indonesia|SCTV|unknown|
+Indonesia|Metro TV|unknown|
+Indonesia|TV One|unknown|
+Philippines|ABS-CBN|unknown|
+Philippines|GMA News|unknown|
+Philippines|TV5|unknown|
+Philippines|CNN Philippines|unknown|
+Thailand|Thai PBS|unknown|
+Thailand|Channel 3|unknown|
+Thailand|Channel 7|unknown|
+Thailand|Workpoint|unknown|
+Vietnam|VTV|unknown|
+Vietnam|HTV|unknown|
+Vietnam|VTC|unknown|
+Vietnam|ANTV|unknown|
+Malaysia|RTM|unknown|
+Malaysia|TV3|unknown|
+Malaysia|Astro Awani|unknown|
+Malaysia|Bernama TV|unknown|
+Singapore|Channel NewsAsia|unknown|
+Singapore|Mediacorp|unknown|
+Singapore|CNA|unknown|
+Pakistan|Geo News|unknown|
+Pakistan|ARY News|unknown|
+Pakistan|Dawn News|unknown|
+Pakistan|Express News|unknown|
+Bangladesh|Channel 24|unknown|
+Bangladesh|ATN News|unknown|
+Bangladesh|NTV|unknown|
+Bangladesh|RTV|unknown|
+Sri Lanka|Sirasa TV|unknown|
+Sri Lanka|Hiru TV|unknown|
+Sri Lanka|Derana|unknown|
+Sri Lanka|ITN|unknown|
+Nepal|NTV Nepal|unknown|
+Nepal|Kantipur TV|unknown|
+Nepal|News 24|unknown|
+Myanmar|MRTV|unknown|
+Myanmar|Sky Net|unknown|
+Myanmar|Channel 7|unknown|
+Cambodia|TVK|unknown|
+Cambodia|CTN|unknown|
+Cambodia|Bayon TV|unknown|
+Laos|Lao National TV|unknown|
+Laos|Lao Star Channel|unknown|
+Mongolia|MNB|unknown|
+Mongolia|TV5|unknown|
+Mongolia|TV9|unknown|
+Saudi Arabia|Al Arabiya|unknown|
+Saudi Arabia|Saudi TV|unknown|
+Saudi Arabia|MBC|unknown|
+Saudi Arabia|Rotana|unknown|
+UAE|Sky News Arabia|unknown|
+UAE|Dubai TV|unknown|
+UAE|Abu Dhabi TV|unknown|
+UAE|Al Arabiya|unknown|
+Qatar|Al Jazeera|unknown|
+Qatar|Qatar TV|unknown|
+Qatar|Al Rayyan TV|unknown|
+Turkey|TRT World|unknown|
+Turkey|CNN Türk|unknown|
+Turkey|NTV|unknown|
+Turkey|Habertürk|unknown|
+Iran|Press TV|unknown|
+Iran|IRIB|unknown|
+Iran|Hispan TV|unknown|
+Iraq|Al Iraqiya|unknown|
+Iraq|Al Sumaria|unknown|
+Iraq|Rudaw|unknown|
+Israel|i24 News|unknown|
+Israel|Channel 12|unknown|
+Israel|Channel 13|unknown|
+Israel|Kan 11|unknown|
+Jordan|Roya TV|unknown|
+Jordan|Al Mamlaka|unknown|
+Jordan|Jordan TV|unknown|
+Lebanon|LBCI|unknown|
+Lebanon|Al Jadeed|unknown|
+Lebanon|MTV Lebanon|unknown|
+Kuwait|KTV|unknown|
+Kuwait|Al Rai TV|unknown|
+Kuwait|Sahara TV|unknown|
+Oman|Oman TV|unknown|
+Oman|Al Roya|unknown|
+Oman|Shabiba TV|unknown|
+Bahrain|Bahrain TV|unknown|
+Bahrain|Al Arabiya|unknown|
+Bahrain|Sawt al Bahrain|unknown|
+Yemen|Yemen TV|unknown|
+Yemen|Al Masirah|unknown|
+Yemen|Aden TV|unknown|
+Syria|Syria TV|unknown|
+Syria|Al Ikhbariya|unknown|
+Syria|Orient TV|unknown|
+Palestine|Palestine TV|unknown|
+Palestine|Al Quds|unknown|
+Palestine|Ma\'an TV|unknown|
+Australia|ABC News Australia|unknown|
+Australia|Sky News Australia|unknown|
+Australia|7 News|unknown|
+Australia|9 News|unknown|
+Australia|10 News|unknown|
+New Zealand|TVNZ|unknown|
+New Zealand|RNZ Pacific|unknown|
+New Zealand|Newshub|unknown|
+New Zealand|Three|unknown|
+Fiji|Fiji TV|unknown|
+Fiji|FBC TV|unknown|
+Fiji|Mai TV|unknown|
+Papua New Guinea|EMTV|unknown|
+Papua New Guinea|Kundu 2|unknown|
+Papua New Guinea|NBC PNG|unknown|
+Samoa|TV1 Samoa|unknown|
+Samoa|Samoa Broadcasting|unknown|
+Tonga|Tonga Broadcasting|unknown|
+Tonga|TV Tonga|unknown|
+Vanuatu|VBTC|unknown|
+Vanuatu|TV Blong Vanuatu|unknown|
+Solomon Islands|SIBC|unknown|
+Solomon Islands|One News|unknown|
+Kiribati|Radio Kiribati|unknown|
+Kiribati|Te Uekera|unknown|
+Micronesia|FSM TV|unknown|
+Micronesia|Island Times|unknown|
+Marshall Islands|MBC|unknown|
+Marshall Islands|Marshall Islands Journal|unknown|
+Palau|Tia Belau|unknown|
+Palau|Palau Wave Radio|unknown|
+Nauru|Nauru TV|unknown|
+Nauru|Nauru Bulletin|unknown|
+Tuvalu|Radio Tuvalu|unknown|
+Tuvalu|Tuvalu News|unknown|
+Albania|RTSH|state|https://www.rtsh.al/
+Albania|Top Channel|private|https://top-channel.tv/
+Andorra|RTVA|state|https://www.rtva.ad/
+Armenia|Public Television of Armenia|state|https://www.1tv.am/
+Armenia|Shant TV|private|https://www.shanttv.com/
+Azerbaijan|Ictimai TV|state|https://ictimai.tv/
+Azerbaijan|AzTV|state|https://aztv.az/
+Belarus|Belarus 1|state|https://www.tvr.by/
+Belarus|ONT|state|https://ont.by/
+Bosnia and Herzegovina|BHRT|state|https://bhrt.ba/
+Bosnia and Herzegovina|N1 BiH|private|https://n1info.ba/
+Bulgaria|BNT|state|https://bnt.bg/
+Bulgaria|bTV|private|https://btvnovinite.bg/
+Croatia|HRT|state|https://www.hrt.hr/
+Croatia|N1 Hrvatska|private|https://n1info.hr/
+Cyprus|CyBC|state|https://cybc.com.cy/
+Czech Republic|Ceska televize|state|https://ct24.ceskatelevize.cz/
+Czech Republic|CNN Prima News|private|https://cnn.iprima.cz/
+Estonia|ERR|state|https://news.err.ee/
+Georgia|Georgian Public Broadcaster|state|https://1tv.ge/
+Georgia|Rustavi 2|private|https://rustavi2.ge/
+Hungary|M1|state|https://hirado.hu/
+Hungary|RTL Hungary|private|https://rtl.hu/
+Iceland|RUV|state|https://www.ruv.is/
+Kazakhstan|Khabar 24|state|https://24.kz/
+Kosovo|RTK|state|https://www.rtklive.com/
+Latvia|LSM|state|https://www.lsm.lv/
+Liechtenstein|Radio Liechtenstein|state|https://www.radio.li/
+Lithuania|LRT|state|https://www.lrt.lt/
+Luxembourg|RTL Luxembourg|private|https://www.rtl.lu/
+Malta|TVM|state|https://tvmnews.mt/
+Moldova|Moldova 1|state|https://www.trm.md/
+Monaco|Monaco Info|state|https://www.monacoinfo.com/
+Montenegro|RTCG|state|https://www.rtcg.me/
+North Macedonia|MRT|state|https://mrt.com.mk/
+Romania|TVR|state|https://www.tvr.ro/
+Romania|Digi24|private|https://www.digi24.ro/
+San Marino|San Marino RTV|state|https://www.sanmarinortv.sm/
+Serbia|RTS|state|https://www.rts.rs/
+Serbia|N1 Srbija|private|https://n1info.rs/
+Slovakia|RTVS|state|https://spravy.rtvs.sk/
+Slovenia|RTV Slovenija|state|https://www.rtvslo.si/
+Vatican City|Vatican News|state|https://www.vaticannews.va/
+Angola|TPA|state|https://www.tpa.ao/
+Benin|ORTB|state|https://ortb.bj/
+Botswana|Botswana TV|state|https://www.btv.gov.bw/
+Burkina Faso|RTB|state|https://www.rtb.bf/
+Burundi|RTNB|state|https://www.rtnb.bi/
+Cabo Verde|RTC|state|https://www.rtc.cv/
+Central African Republic|Radiodiffusion Television Centrafricaine|state|http://www.radiocentrafrique.net/
+Chad|Tele Tchad|state|https://www.teletchad.td/
+Comoros|ORTC|state|https://www.ortc.km/
+Congo|Telecongo|state|https://www.telecongo.cg/
+Democratic Republic of the Congo|RTNC|state|https://www.rtnc.cd/
+Djibouti|RTD|state|https://www.rtd.dj/
+Equatorial Guinea|TVGE|state|https://www.rtvge.net/
+Eritrea|Eri-TV|state|https://www.eritv.er/
+Eswatini|Eswatini TV|state|https://www.ebis.sz/
+Gabon|Gabon 1ere|state|https://www.gabon1ere.ga/
+Gambia|GRTS|state|https://www.grts.gm/
+Guinea|RTG|state|https://www.rtg.gov.gn/
+Guinea-Bissau|TGB|state|https://www.rtp.pt/
+Lesotho|Lesotho TV|state|https://www.gov.ls/
+Liberia|LBS|state|https://www.lbsliberia.com/
+Libya|Libya Al Ahrar|private|https://libyaalahrar.tv/
+Madagascar|TVM|state|https://www.tvm.mg/
+Malawi|MBC|state|https://www.mbc.mw/
+Mali|ORTM|state|https://www.ortm.ml/
+Mauritania|EMM|state|https://www.emm.mr/
+Mauritius|MBC|state|https://mbcnews.mu/
+Mozambique|TVM|state|https://www.tvm.co.mz/
+Namibia|NBC|state|https://www.nbc.na/
+Niger|Tele Sahel|state|https://www.ortn.ne/
+Rwanda|Rwanda Broadcasting Agency|state|https://www.rba.co.rw/
+Sao Tome and Principe|TVS|state|https://www.stp-press.st/
+Seychelles|SBC|state|https://www.sbc.sc/
+Sierra Leone|SLBC|state|https://slbc.sl/
+Somalia|SNTV|state|https://sntv.gov.so/
+South Sudan|SSBC|state|https://www.ssbctv.net/
+Sudan|Sudan TV|state|https://sudantv.sd/
+Togo|TVT|state|https://www.togotelevision.tg/
+Afghanistan|TOLOnews|private|https://tolonews.com/
+Afghanistan|RTA|state|https://rta.af/
+Bhutan|BBS|state|https://www.bbs.bt/
+Brunei|RTB|state|https://www.rtb.gov.bn/
+East Timor|RTTL|state|https://www.rttlep.tl/
+Kyrgyzstan|KTRK|state|https://ktrk.kg/
+Maldives|PSM News|state|https://psmnews.mv/
+North Korea|KCTV|state|http://www.kcna.kp/
+Taiwan|Taiwan Plus|intl|https://www.taiwanplus.com/
+Taiwan|PTS|state|https://news.pts.org.tw/
+Tajikistan|TV Safina|state|https://www.tv.tj/
+Turkmenistan|Altyn Asyr|state|https://turkmentv.gov.tm/
+United Arab Emirates|Sky News Arabia|private|https://www.skynewsarabia.com/
+United Arab Emirates|Dubai TV|state|https://www.dmi.ae/
+Uzbekistan|UzReport TV|private|https://uzreport.news/
+Uzbekistan|MY5|state|https://my5.uz/
